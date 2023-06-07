@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.rsql-filter-item {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  justify-items: center;
+  padding: 9px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  cursor: pointer;
+}
