@@ -4,6 +4,40 @@
   outline: none;
 }
 
+.rsql-box {
+  padding: 9px;
+  border-radius: 4px;
+  border: 1px solid #a1a1a1;
+  width: fit-content;
+}
+
+.rsql-input {
+  padding: 8px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid #a1a1a1;
+}
+
+.rsql-select-field {
+  display: grid;
+  gap: 4px;
+}
+
+.rsql-select-field-option {
+  padding: 8px;
+  transition: 0.4s all;
+  border-radius: 4px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  justify-items: left;
+}
+
+.rsql-select-field-option:hover {
+  background-color: #ccccccaa;
+}
+
 .rsql-filter-item {
   display: flex;
   gap: 4px;
@@ -13,4 +47,46 @@
   border-radius: 8px;
   border: 2px solid #ccc;
   cursor: pointer;
+}
+
+.rsql-btn {
+  padding: 6px;
+  cursor: pointer;
+}
+
+.rsql-btn-icon {
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.rsql-select-filter {
+  display: grid;
+  gap: 4px;
+}
+
+.rsql-select-filter-select {
+  padding: 8px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.rsql-select-filter-row {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
+}
+
+.rsql-filter {
+}
+
+.rsql-filter-items {
+  padding-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px
 }

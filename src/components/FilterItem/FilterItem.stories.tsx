@@ -4,7 +4,7 @@ import { StoryFn, Meta } from '@storybook/react'
 import { Item, ItemProps } from '.'
 
 export default {
-  title: 'components/Filter/Item',
+  title: 'components/FilterItem',
   component: Item
 } as Meta<React.JSXElementConstructor<ItemProps>>
 
