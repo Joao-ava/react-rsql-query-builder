@@ -81,6 +81,7 @@ const Filter: React.FC<FilterProps> = ({ fields }) => {
       value={field.value as string}
       setValue={(value) => setField({ ...field, value })}
       operators={field.operators}
+      options={field.options}
       onRemove={handleRemove}
       onAddFilterItem={onAddFilterItem}
       onCloseFieldModel={() => setAddFieldModal(false)}

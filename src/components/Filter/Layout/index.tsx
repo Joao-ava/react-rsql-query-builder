@@ -36,7 +36,8 @@ const Layout: React.FC<FilterProps> = ({
   operator,
   setOperator,
   onAddFilterItem,
-  onEdit
+  onEdit,
+  options
 }) => {
   const items = rsqlToFilterItems(fields, search)
   const selectFieldRef = useRef<HTMLDivElement>(null)
@@ -63,6 +64,7 @@ const Layout: React.FC<FilterProps> = ({
         setValue={setValue}
         onRemove={onRemove}
         operators={operators}
+        options={options}
         ref={selectFilterRef}
       />
     )}

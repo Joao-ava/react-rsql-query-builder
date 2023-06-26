@@ -1,12 +1,15 @@
 import { ComparisonOperator } from '@rsql/ast'
 
-export type FieldType = 'string' | 'number' | 'date' | 'array'
-
+export type SingleType = 'string' | 'number' | 'date'
+export type MultiType = 'array'
+export type FieldType = SingleType | MultiType
+export type Option<T = string> = { label: string, value: T }
 export type Field = {
   selector: string
   label: string
-  type: FieldType
   operators?: ComparisonOperator[]
+  options?: Option[]
+  type: FieldType
 }
 
 export type FilterItem = Field & {

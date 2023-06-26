@@ -16,6 +16,11 @@ const Template: StoryFn<React.JSXElementConstructor<SelectFilterProps>> = (
 }
 
 const defaultProps: SelectFilterProps = {
+  options: [
+    { label: 'Active', value: 'active' },
+    { label: 'Deactivate', value: 'deactivate' },
+    { label: 'Pending', value: 'pending' }
+  ],
   operator: '==',
   selector: 'age',
   type: 'string',
@@ -24,7 +29,8 @@ const defaultProps: SelectFilterProps = {
   value: '2',
   setValue: () => undefined,
   onRemove: () => undefined,
-  onAddFilter: () => undefined
+  onAddFilterItem: () => undefined,
+  setOperator: () => undefined
 }
 
 export const Default = Template.bind({})

@@ -14,9 +14,18 @@ const Template: StoryFn<React.JSXElementConstructor<SelectFieldProps>> = (
 
 const defaultProps: SelectFieldProps = {
   fields: [
-    { name: 'name', label: 'Name', type: 'string' },
-    { name: 'age', label: 'Age', type: 'number' },
-    { name: 'status', label: 'Status', type: 'array' },
+    { selector: 'name', label: 'Name', type: 'string' },
+    { selector: 'age', label: 'Age', type: 'number' },
+    {
+      selector: 'status',
+      label: 'Status',
+      type: 'array',
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Deactivate', value: 'deactivate' },
+        { label: 'Pending', value: 'pending' }
+      ]
+    },
   ],
   onSelectField: () => undefined
 }

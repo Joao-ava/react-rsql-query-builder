@@ -16,7 +16,16 @@ const defaultProps: FilterProps = {
   fields: [
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
-    { selector: 'status', label: 'Status', type: 'array' },
+    {
+      selector: 'status',
+      label: 'Status',
+      type: 'array',
+      options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Deactivate', value: 'deactivate' },
+        { label: 'Pending', value: 'pending' }
+      ]
+    },
   ]
 }
 

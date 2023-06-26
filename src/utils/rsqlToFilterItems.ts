@@ -17,6 +17,7 @@ const rsqlToFilterItems = (fields: Field[], param?: ExpressionNode): FilterItem[
       label: field.label,
       type: field.type,
       operators: field?.operators,
+      options: field.options
     }
   ]
 }
