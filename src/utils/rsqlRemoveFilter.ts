@@ -4,7 +4,10 @@ import { FilterItem } from '../types.ts'
 import { isSameRsqlFilter } from './isSameRsqlFilter.ts'
 import builder from '@rsql/builder'
 
-export const rsqlRemoveFilter = (field: FilterItem, search?: ExpressionNode): ExpressionNode | undefined => {
+export const rsqlRemoveFilter = (
+  field: FilterItem,
+  search?: ExpressionNode
+): ExpressionNode | undefined => {
   if (!search) return search
   if (search.type === 'LOGIC') {
     const left = rsqlRemoveFilter(field, search.left)
