@@ -10,9 +10,9 @@ export default {
   component: Layout
 } as Meta<React.JSXElementConstructor<FilterProps>>
 
-const Template: StoryFn<React.JSXElementConstructor<FilterProps>> = (
-  args
-) => <Layout {...args} />
+const Template: StoryFn<React.JSXElementConstructor<FilterProps>> = (args) => (
+  <Layout {...args} />
+)
 
 const defaultProps: FilterProps = {
   operator: '==',
@@ -21,7 +21,7 @@ const defaultProps: FilterProps = {
   fields: [
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
-    { selector: 'status', label: 'Status', type: 'array' },
+    { selector: 'status', label: 'Status', type: 'array' }
   ],
   addFieldModal: false,
   onSelectField: () => undefined,
@@ -30,7 +30,7 @@ const defaultProps: FilterProps = {
   value: 'John Doe',
   setValue: () => undefined,
   selectFilterModal: false,
-  operators: ['==', '!='],
+  operators: ['equals', 'notEquals'],
   setOperator: () => undefined,
   onRemove: () => undefined,
   onAddFilterItem: () => undefined,

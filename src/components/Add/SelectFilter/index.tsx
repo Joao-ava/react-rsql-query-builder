@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { FieldType, FilterItem } from '../../../types'
 import { defaultOperators } from '../../../utils'
-import { Operator } from '../../Operator.tsx'
+import { useComponentsProvider } from '../../../providers/ComponentsProvider.tsx'
 
 const inputType: Record<FieldType, HTMLInputTypeAttribute> = {
   string: 'text',
@@ -38,6 +38,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
   },
   ref
 ) => {
+  const { Button, Input } = useComponentsProvider()
   const { t } = useTranslation()
   const allOperators = operators?.length ? operators : defaultOperators[type]
   const isArray = type === 'array'
@@ -56,7 +57,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
         >
           {allOperators?.map((item) => (
             <option key={item} value={item}>
-              <Operator operator={item} />
+              {t(`operators.${item}`)}
             </option>
           ))}
         </select>
@@ -68,19 +69,26 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
       {isArray ? (
         <div>
           <select
+            className="rsql-select-filter-select-value"
             value=""
             onChange={(e) => setValue([...value, e.target.value])}
           >
-            <option value="">Select a value</option>
+            <option value="" className="rsql-select-filter-select-option">
+              Select a value
+            </option>
             {possibleOptions?.map((item) => (
-              <option key={item.value} value={item.value}>
+              <option
+                key={item.value}
+                value={item.value}
+                className="rsql-select-filter-select-option"
+              >
                 {item.label}
               </option>
             ))}
           </select>
-          <div>
+          <div className="rsql-select-filter-select-values">
             {valueArray.map((item) => (
-              <div key={item}>
+              <div key={item} className="rsql-select-filter-select-value-item">
                 <p>{item}</p>
                 <button
                   onClick={() =>
@@ -94,8 +102,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
           </div>
         </div>
       ) : (
-        <input
-          className="rsql-input"
+        <Input
           name="rsql-field-search"
           placeholder={t('search') as string}
           value={value}
@@ -105,9 +112,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
       )}
 
       <div className="rsql-row end">
-        <button className="rsql-btn" onClick={onAddFilterItem}>
-          {t('submit')}
-        </button>
+        <Button onClick={onAddFilterItem}>{t('submit')}</Button>
       </div>
     </div>
   )

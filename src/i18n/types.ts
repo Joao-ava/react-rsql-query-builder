@@ -12,5 +12,6 @@ export type Locale = {
     in: string
     out: string
     contains: string
+    notContains: string
   }
 }

@@ -1,14 +1,15 @@
 import React, { forwardRef, useState } from 'react'
 import { IconType } from 'react-icons'
 import { useTranslation } from 'react-i18next'
-
 import {
   BiText,
   BiHash,
   BiCalendarAlt,
   BiDownArrowCircle
 } from 'react-icons/bi'
+
 import { Field, FieldType } from '../../../types'
+import { useComponentsProvider } from '../../../providers/ComponentsProvider.tsx'
 
 export type SelectFieldProps = {
   fields: Field[]
@@ -26,16 +27,16 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
   SelectFieldProps
 > = ({ fields, onSelectField }, ref) => {
   const { t } = useTranslation()
+  const { Input } = useComponentsProvider()
   const [search, setSearch] = useState('')
   const items = fields.filter((item) =>
     item.label.toLowerCase().includes(search.toLowerCase())
   )
   return (
     <div className="rsql-box rsql-select-field" ref={ref}>
-      <input
+      <Input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="rsql-input"
         name="rsql-field-search"
         placeholder={t('search') as string}
       />

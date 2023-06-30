@@ -16,7 +16,7 @@ const defaultProps: ItemProps = {
   label: 'Year',
   type: 'number',
   selector: 'year',
-  operator: '==',
+  operator: 'equals',
   value: '1989',
   onEdit: () => undefined
 }
@@ -29,37 +29,38 @@ Contains.args = {
   ...defaultProps,
   label: 'Name',
   selector: 'name',
-  value: '**19**'
+  operator: 'contains',
+  value: '*19*'
 }
 
 export const NotEquals = Template.bind({})
 NotEquals.args = {
   ...defaultProps,
-  operator: '!='
+  operator: 'notEquals'
 }
 
 export const MoreThan = Template.bind({})
 MoreThan.args = {
   ...defaultProps,
-  operator: '>'
+  operator: 'moreThan'
 }
 
 export const MoreThanEqual = Template.bind({})
 MoreThanEqual.args = {
   ...defaultProps,
-  operator: '>='
+  operator: 'moreThanOrEqual'
 }
 
 export const LessThan = Template.bind({})
 LessThan.args = {
   ...defaultProps,
-  operator: '<'
+  operator: 'lessThan'
 }
 
 export const LessThanEqual = Template.bind({})
 LessThanEqual.args = {
   ...defaultProps,
-  operator: '<='
+  operator: 'lessThanOrEqual'
 }
 
 export const StatusIn = Template.bind({})
@@ -67,7 +68,7 @@ StatusIn.args = {
   ...defaultProps,
   selector: 'status',
   value: ['active', 'schedule'],
-  operator: '=in='
+  operator: 'in'
 }
 
 export const StatusOut = Template.bind({})
@@ -75,5 +76,5 @@ StatusOut.args = {
   ...defaultProps,
   selector: 'status',
   value: ['active', 'schedule'],
-  operator: '=out='
+  operator: 'out'
 }

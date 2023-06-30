@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StoryFn, Meta } from '@storybook/react'
+import { ExpressionNode } from '@rsql/ast'
 
 import { Filter, FilterProps } from './index'
 
@@ -8,11 +9,14 @@ export default {
   component: Filter
 } as Meta<React.JSXElementConstructor<FilterProps>>
 
-const Template: StoryFn<React.JSXElementConstructor<FilterProps>> = (
-  args
-) => <Filter {...args} />
+const Template: StoryFn<React.JSXElementConstructor<FilterProps>> = (args) => {
+  const [search, setSearch] = useState<ExpressionNode | undefined>(args.search)
+  return <Filter {...args} search={search} setSearch={setSearch} />
+}
 
 const defaultProps: FilterProps = {
+  search: undefined,
+  setSearch: () => undefined,
   fields: [
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
@@ -25,7 +29,7 @@ const defaultProps: FilterProps = {
         { label: 'Deactivate', value: 'deactivate' },
         { label: 'Pending', value: 'pending' }
       ]
-    },
+    }
   ]
 }
 

@@ -1,25 +1,21 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { FilterItem } from '../../types'
-import { Operator } from '../Operator.tsx'
 
 export type ItemProps = FilterItem & {
   onEdit: (item: FilterItem) => void
 }
 const Item: React.FC<ItemProps> = ({ onEdit, ...props }) => {
-  const { label, value } = props
+  const { label, value, operator } = props
+  const { t } = useTranslation()
   const values = Array.isArray(value)
     ? value.join(', ')
     : value.replaceAll('*', '')
   return (
     <div className="rsql-filter-item" onClick={() => onEdit(props)}>
       <strong>{label}</strong>
-      <p>
-        <Operator
-          operator={props.operator}
-          value={!Array.isArray(value) ? value : ''}
-        />
-      </p>
+      <p>{t(`operators.${operator}`)}</p>
       <p>{values}</p>
     </div>
   )

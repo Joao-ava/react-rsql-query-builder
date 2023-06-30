@@ -13,7 +13,8 @@ const en: Locale = {
     lessThanOrEqual: 'less than or equal',
     in: 'in',
     out: 'not in',
-    contains: 'contains'
+    contains: 'contains',
+    notContains: 'not contains'
   }
 }
 

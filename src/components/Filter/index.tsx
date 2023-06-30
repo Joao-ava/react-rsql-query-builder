@@ -4,10 +4,19 @@ import { ExpressionNode } from '@rsql/ast'
 
 import { SelectFieldProps } from '../Add/SelectField'
 import { FilterItem } from '../../types'
-import { defaultOperators, rsqlReplaceFilter, rsqlRemoveFilter } from '../../utils'
+import {
+  defaultOperators,
+  rsqlReplaceFilter,
+  rsqlRemoveFilter,
+  selectFieldToComparisonOperator,
+  searchableSelectField
+} from '../../utils'
 import { Layout } from './Layout'
 
-export type FilterProps = Pick<SelectFieldProps, 'fields'>
+export type FilterProps = Pick<SelectFieldProps, 'fields'> & {
+  search: ExpressionNode | undefined
+  setSearch: (search: ExpressionNode | undefined) => void
+}
 const initialFieldState: FilterItem = {
   label: '',
   operators: [],
@@ -16,8 +25,7 @@ const initialFieldState: FilterItem = {
   value: '',
   operator: '=='
 }
-const Filter: React.FC<FilterProps> = ({ fields }) => {
-  const [search, setSearch] = useState<ExpressionNode | undefined>()
+const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
   const [addFieldModal, setAddFieldModal] = useState(false)
   const [selectFilterModal, setSelectFilterModal] = useState(false)
   const [field, setField] = useState<FilterItem>(initialFieldState)
@@ -34,13 +42,28 @@ const Filter: React.FC<FilterProps> = ({ fields }) => {
 
   const onAddFilterItem = () => {
     setSelectFilterModal(false)
+    const rsqlField = {
+      ...field,
+      operator: selectFieldToComparisonOperator(field.operator),
+      value: searchableSelectField.includes(field.operator)
+        ? `*${field.value}*`
+        : field.value
+    }
     if (editField.selector) {
-      setSearch(rsqlReplaceFilter(editField, field, search))
+      const rsqlEditField = {
+        ...editField,
+        operator: selectFieldToComparisonOperator(editField.operator)
+      }
+      setSearch(rsqlReplaceFilter(rsqlEditField, rsqlField, search))
       setField(initialFieldState)
       setEditField(initialFieldState)
       return
     }
-    const comparison =  builder.comparison(field.selector, field.operator, field.value)
+    const comparison = builder.comparison(
+      rsqlField.selector,
+      rsqlField.operator,
+      rsqlField.value
+    )
     setSearch(search ? builder.and(search, comparison) : comparison)
     setField(initialFieldState)
   }
@@ -48,7 +71,12 @@ const Filter: React.FC<FilterProps> = ({ fields }) => {
   const handleEditFilter = (item: FilterItem): void => {
     setSelectFilterModal(true)
     setEditField(item)
-    setField(item)
+    setField({
+      ...item,
+      value: searchableSelectField.includes(item.operator)
+        ? item.value.slice(1, -1)
+        : item.value
+    })
   }
 
   const handleCloseFilterModal = () => {
@@ -58,7 +86,11 @@ const Filter: React.FC<FilterProps> = ({ fields }) => {
 
   const handleRemove = () => {
     if (editField.selector) {
-      setSearch(rsqlRemoveFilter(editField, search))
+      const rsqlEditField = {
+        ...editField,
+        operator: selectFieldToComparisonOperator(editField.operator)
+      }
+      setSearch(rsqlRemoveFilter(rsqlEditField, search))
     }
     setSelectFilterModal(false)
     setField(initialFieldState)

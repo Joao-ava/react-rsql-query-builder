@@ -2,12 +2,16 @@ import React, { useRef } from 'react'
 import { ExpressionNode } from '@rsql/ast'
 import { useTranslation } from 'react-i18next'
 
-import { rsqlToFilterItems } from '../../../utils'
+import {
+  comparisonToSelectFieldOperator,
+  rsqlToFilterItems
+} from '../../../utils'
 import { Item } from '../../FilterItem'
 import { SelectField, SelectFieldProps } from '../../Add/SelectField'
 import { SelectFilter, SelectFilterProps } from '../../Add/SelectFilter'
 import { useClickOutside } from '../../../hooks/useClickOutside'
 import { FilterItem } from '../../../types'
+import { useComponentsProvider } from '../../../providers/ComponentsProvider.tsx'
 
 export type FilterProps = SelectFieldProps &
   SelectFilterProps & {
@@ -45,15 +49,14 @@ const Layout: React.FC<FilterProps> = ({
   const items = rsqlToFilterItems(fields, search)
   const selectFieldRef = useRef<HTMLDivElement>(null)
   const selectFilterRef = useRef<HTMLDivElement>(null)
+  const { Button } = useComponentsProvider()
 
   useClickOutside(selectFieldRef, () => onCloseFieldModel())
   useClickOutside(selectFilterRef, () => onCloseFilterModel())
 
   return (
     <div className="rsql-filter">
-      <button className="rsql-btn" onClick={onAddFilter}>
-        {t('add')}
-      </button>
+      <Button onClick={onAddFilter}>{t('add')}</Button>
       {addFieldModal && (
         <SelectField
           fields={fields}
@@ -83,6 +86,10 @@ const Layout: React.FC<FilterProps> = ({
             key={item.selector + item.operator + item.value}
             onEdit={onEdit}
             {...item}
+            operator={comparisonToSelectFieldOperator(
+              item.operator,
+              !Array.isArray(item.value) ? item.value : ''
+            )}
           />
         ))}
       </div>
