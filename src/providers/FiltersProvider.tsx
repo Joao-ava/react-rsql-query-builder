@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { I18nextProvider, I18nextProviderProps } from 'react-i18next'
 
 import { i18next } from '../i18n'
@@ -10,9 +10,7 @@ import {
 
 type FiltersProviderProps = Partial<I18nextProviderProps> &
   FilterProps &
-  Omit<ComponentsProviderProps, 'children'> & {
-    language?: string
-  }
+  Omit<ComponentsProviderProps, 'children'>
 const FiltersProvider: React.FC<FiltersProviderProps> = ({
   i18n = i18next,
   language = 'en',
@@ -20,12 +18,9 @@ const FiltersProvider: React.FC<FiltersProviderProps> = ({
   Input,
   ...props
 }) => {
-  useCallback(() => {
-    i18n.changeLanguage(language)
-  }, [i18n, language])
   return (
     <I18nextProvider i18n={i18n}>
-      <ComponentsProvider Button={Button} Input={Input}>
+      <ComponentsProvider Button={Button} Input={Input} language={language}>
         <Filter {...props} />
       </ComponentsProvider>
     </I18nextProvider>
