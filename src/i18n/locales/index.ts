@@ -1,5 +1,6 @@
 import { en } from './en'
 import { ptBr } from './ptBr'
+import { es } from './es'
 
 const resources = {
   en: {
@@ -7,6 +8,9 @@ const resources = {
   },
   ptBr: {
     translation: ptBr
+  },
+  es: {
+    translation: es
   }
 }
 

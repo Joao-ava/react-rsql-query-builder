@@ -1,7 +1,7 @@
 import { Locale } from '../types.ts'
 
 const en: Locale = {
-  add: 'Add',
+  add: 'Add filter',
   search: 'Search',
   submit: 'Submit',
   operators: {

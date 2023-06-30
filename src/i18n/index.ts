@@ -5,7 +5,6 @@ import { resources } from './locales'
 
 i18next.use(initReactI18next).init({
   resources: resources,
-  lng: 'en',
   fallbackLng: 'en',
   interpolation: {
     escapeValue: false
