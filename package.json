@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -18,7 +21,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.3.1",
-    "react-icons": "^4.9.0"
+    "react-icons": "^4.9.0",
+    "vite-plugin-dts": "^3.0.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^7.0.18",
