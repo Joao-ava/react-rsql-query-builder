@@ -37,3 +37,19 @@ const defaultProps: SelectFilterProps = {
 
 export const Default = Template.bind({})
 Default.args = defaultProps
+
+export const ArrayField = Template.bind({})
+ArrayField.args = {
+  ...defaultProps,
+  label: 'Status',
+  selector: 'status',
+  type: 'array',
+  operators: ['in', 'out'],
+  operator: 'in',
+  value: ['active'],
+  options: [
+    { label: 'Active', value: 'active' },
+    { label: 'Deactivate', value: 'deactivate' },
+    { label: 'Pending', value: 'pending' }
+  ]
+}

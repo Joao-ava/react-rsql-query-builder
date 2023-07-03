@@ -49,6 +49,22 @@
   cursor: pointer;
 }
 
+.rsql-select-filter-select-values {
+  display: grid;
+  padding-top: 4px;
+  gap: 4px;
+}
+
+.rsql-select-filter-select-value-item {
+  display: flex;
+  gap: 4px;
+  width: fit-content;
+  justify-items: center;
+  padding: 9px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+}
+
 .rsql-btn {
   padding: 6px;
   cursor: pointer;

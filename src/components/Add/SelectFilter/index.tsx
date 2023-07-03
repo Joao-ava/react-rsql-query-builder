@@ -1,5 +1,5 @@
 import React, { HTMLInputTypeAttribute, forwardRef } from 'react'
-import { BiTrashAlt } from 'react-icons/bi'
+import { BiTrashAlt, BiX } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 
 import { FieldType, FilterItem } from '../../../types'
@@ -69,7 +69,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
       {isArray ? (
         <div>
           <select
-            className="rsql-select-filter-select-value"
+            className="rsql-input rsql-select-filter-select-value"
             value=""
             onChange={(e) => setValue([...value, e.target.value])}
           >
@@ -91,11 +91,12 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
               <div key={item} className="rsql-select-filter-select-value-item">
                 <p>{item}</p>
                 <button
+                  className="rsql-btn-icon"
                   onClick={() =>
                     setValue(valueArray.filter((option) => option !== item))
                   }
                 >
-                  X
+                  <BiX />
                 </button>
               </div>
             ))}
