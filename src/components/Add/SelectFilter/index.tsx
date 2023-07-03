@@ -87,19 +87,25 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
             ))}
           </select>
           <div className="rsql-select-filter-select-values">
-            {valueArray.map((item) => (
-              <div key={item} className="rsql-select-filter-select-value-item">
-                <p>{item}</p>
-                <button
-                  className="rsql-btn-icon"
-                  onClick={() =>
-                    setValue(valueArray.filter((option) => option !== item))
-                  }
+            {valueArray.map((item) => {
+              const option = options?.find(({ value }) => item === value)
+              return (
+                <div
+                  key={item}
+                  className="rsql-select-filter-select-value-item"
                 >
-                  <BiX />
-                </button>
-              </div>
-            ))}
+                  <p>{option?.label}</p>
+                  <button
+                    className="rsql-btn-icon"
+                    onClick={() =>
+                      setValue(valueArray.filter((option) => option !== item))
+                    }
+                  >
+                    <BiX />
+                  </button>
+                </div>
+              )
+            })}
           </div>
         </div>
       ) : (
