@@ -39,7 +39,7 @@ const Filter: React.FC = () => {
 
 ## Translation
 
-For default library have three languages english (en), portuguese (ptBr) and spanish (es).
+For default library have three languages english (en), portuguese (ptBr) and spanish (es), you can specify language do you want with prop `language` and you can customize or add language with prop `i18n` (Use [english translation as example](src/i18n/types.ts)).
 
 ## Commands
 
