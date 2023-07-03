@@ -1,4 +1,4 @@
-import { ComparisonOperator } from '@rsql/ast'
+import { SelectFieldOperator } from './utils'
 
 export type SingleType = 'string' | 'number' | 'date'
 export type MultiType = 'array'
@@ -7,7 +7,7 @@ export type Option<T = string> = { label: string; value: T }
 export type Field = {
   selector: string
   label: string
-  operators?: ComparisonOperator[]
+  operators?: SelectFieldOperator[]
   options?: Option[]
   type: FieldType
 }
