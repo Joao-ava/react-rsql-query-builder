@@ -1,5 +1,5 @@
 import React from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { Item, ItemProps } from '.'
 
@@ -77,4 +77,12 @@ StatusOut.args = {
   selector: 'status',
   value: ['active', 'schedule'],
   operator: 'out'
+}
+
+export const Boolean = Template.bind({})
+Boolean.args = {
+  ...defaultProps,
+  operator: 'isActive',
+  value: 'true',
+  type: 'boolean'
 }

@@ -2,10 +2,11 @@ import React, { forwardRef, useState } from 'react'
 import { IconType } from 'react-icons'
 import { useTranslation } from 'react-i18next'
 import {
-  BiText,
-  BiHash,
   BiCalendarAlt,
-  BiDownArrowCircle
+  BiDownArrowCircle,
+  BiHash,
+  BiText,
+  BiToggleRight
 } from 'react-icons/bi'
 
 import { Field, FieldType } from '../../../types'
@@ -20,7 +21,8 @@ const iconsByType: Record<FieldType, IconType> = {
   string: BiText,
   number: BiHash,
   date: BiCalendarAlt,
-  array: BiDownArrowCircle
+  array: BiDownArrowCircle,
+  boolean: BiToggleRight
 }
 const SelectFieldFunction: React.ForwardRefRenderFunction<
   HTMLDivElement,

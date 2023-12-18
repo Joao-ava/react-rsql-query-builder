@@ -54,6 +54,7 @@ export const comparisonToSelectFieldOperator = (
 export const defaultOperators: Record<FieldType, SelectFieldOperator[]> = {
   array: ['in', 'out'],
   string: ['equals', 'notEquals', 'contains', 'notContains'],
+  boolean: ['equals', 'notEquals'],
   number: [
     'equals',
     'lessThan',

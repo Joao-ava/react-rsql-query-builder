@@ -6,10 +6,10 @@ import { SelectFieldProps } from '../Add/SelectField'
 import { FilterItem } from '../../types'
 import {
   defaultOperators,
-  rsqlReplaceFilter,
   rsqlRemoveFilter,
-  selectFieldToComparisonOperator,
-  searchableSelectField
+  rsqlReplaceFilter,
+  searchableSelectField,
+  selectFieldToComparisonOperator
 } from '../../utils'
 import { Layout } from './Layout'
 

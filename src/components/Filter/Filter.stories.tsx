@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 import { ExpressionNode } from '@rsql/ast'
 
 import { Filter, FilterProps } from './index'
@@ -20,6 +20,7 @@ const defaultProps: FilterProps = {
   fields: [
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
+    { selector: 'isActive', label: 'Active', type: 'boolean' },
     {
       selector: 'status',
       label: 'Status',

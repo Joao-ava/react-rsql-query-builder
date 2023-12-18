@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { SelectFilter, SelectFilterProps } from '.'
 
@@ -37,6 +37,16 @@ const defaultProps: SelectFilterProps = {
 
 export const Default = Template.bind({})
 Default.args = defaultProps
+
+export const Boolean = Template.bind({})
+Boolean.args = {
+  ...defaultProps,
+  operator: 'equals',
+  selector: 'isActive',
+  type: 'boolean',
+  label: 'Active',
+  value: 'true'
+}
 
 export const ArrayField = Template.bind({})
 ArrayField.args = {
