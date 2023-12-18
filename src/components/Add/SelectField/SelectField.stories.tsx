@@ -1,5 +1,5 @@
 import React from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import { SelectField, SelectFieldProps } from '.'
 
@@ -16,6 +16,7 @@ const defaultProps: SelectFieldProps = {
   fields: [
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
+    { selector: 'isActive', label: 'Active', type: 'boolean' },
     {
       selector: 'status',
       label: 'Status',
@@ -25,7 +26,7 @@ const defaultProps: SelectFieldProps = {
         { label: 'Deactivate', value: 'deactivate' },
         { label: 'Pending', value: 'pending' }
       ]
-    },
+    }
   ],
   onSelectField: () => undefined
 }

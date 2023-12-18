@@ -1,12 +1,17 @@
 import React, { createContext, useContext, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Button as DefaultButton, ButtonProps } from '../components/Button'
 import { Input as DefaultInput, InputProps } from '../components/Input'
-import { useTranslation } from 'react-i18next'
+import {
+  Checkbox as DefaultCheckbox,
+  CheckboxProps
+} from '../components/Checkbox'
 
 type ComponentsContextType = {
   Button: React.FC<ButtonProps>
   Input: React.FC<InputProps>
+  Checkbox: React.FC<CheckboxProps>
 }
 
 const ComponentsContext = createContext({} as ComponentsContextType)
@@ -19,6 +24,7 @@ export type ComponentsProviderProps = Partial<ComponentsContextType> & {
 export const ComponentsProvider: React.FC<ComponentsProviderProps> = ({
   Button = DefaultButton,
   Input = DefaultInput,
+  Checkbox = DefaultCheckbox,
   language,
   children
 }) => {
@@ -30,7 +36,8 @@ export const ComponentsProvider: React.FC<ComponentsProviderProps> = ({
     <ComponentsContext.Provider
       value={{
         Button,
-        Input
+        Input,
+        Checkbox
       }}
     >
       {children}

@@ -106,3 +106,9 @@
   flex-wrap: wrap;
   gap: 4px
 }
+
+.rsql-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

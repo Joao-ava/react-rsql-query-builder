@@ -1,6 +1,6 @@
 import { SelectFieldOperator } from './utils'
 
-export type SingleType = 'string' | 'number' | 'date'
+export type SingleType = 'string' | 'number' | 'date' | 'boolean'
 export type MultiType = 'array'
 export type FieldType = SingleType | MultiType
 export type Option<T = string> = { label: string; value: T }

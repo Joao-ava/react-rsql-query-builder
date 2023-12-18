@@ -1,4 +1,4 @@
-import React, { HTMLInputTypeAttribute, forwardRef } from 'react'
+import React, { forwardRef, HTMLInputTypeAttribute } from 'react'
 import { BiTrashAlt, BiX } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 
@@ -10,7 +10,8 @@ const inputType: Record<FieldType, HTMLInputTypeAttribute> = {
   string: 'text',
   number: 'number',
   date: 'date',
-  array: 'string'
+  array: 'string',
+  boolean: 'checkbox'
 }
 
 export type SelectFilterProps = FilterItem & {
@@ -38,9 +39,10 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
   },
   ref
 ) => {
-  const { Button, Input } = useComponentsProvider()
+  const { Button, Input, Checkbox } = useComponentsProvider()
   const { t } = useTranslation()
   const allOperators = operators?.length ? operators : defaultOperators[type]
+  const isBoolean = type === 'boolean'
   const isArray = type === 'array'
   const valueArray = value ? (value as string[]) : []
   const possibleOptions = isArray
@@ -66,7 +68,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
         </button>
       </div>
 
-      {isArray ? (
+      {isArray && (
         <div>
           <select
             className="rsql-input rsql-select-filter-select-value"
@@ -108,7 +110,20 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
             })}
           </div>
         </div>
-      ) : (
+      )}
+
+      {isBoolean && (
+        <Checkbox
+          name="rsql-switch"
+          placeholder="true"
+          value={value}
+          type={inputType[type]}
+          checked={value === 'true'}
+          onChange={(e) => setValue(String(e.target.checked))}
+        />
+      )}
+
+      {!isBoolean && !isArray && (
         <Input
           name="rsql-field-search"
           placeholder={t('search') as string}
