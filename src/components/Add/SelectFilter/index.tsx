@@ -115,7 +115,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
       {isBoolean && (
         <Checkbox
           name="rsql-switch"
-          placeholder="true"
+          placeholder={t('true') as string}
           value={value}
           type={inputType[type]}
           checked={value === 'true'}

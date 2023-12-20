@@ -2,6 +2,8 @@ export type Locale = {
   add: string
   search: string
   submit: string
+  true: string
+  false: string
   operators: {
     equals: string
     notEquals: string

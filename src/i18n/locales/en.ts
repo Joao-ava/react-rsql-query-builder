@@ -4,6 +4,8 @@ const en: Locale = {
   add: 'Add filter',
   search: 'Search',
   submit: 'Submit',
+  true: 'true',
+  false: 'false',
   operators: {
     equals: 'is',
     notEquals: 'not is',

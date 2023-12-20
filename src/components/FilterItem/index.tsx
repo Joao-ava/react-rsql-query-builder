@@ -7,7 +7,8 @@ export type ItemProps = FilterItem & {
   onEdit: (item: FilterItem) => void
 }
 const Item: React.FC<ItemProps> = ({ onEdit, ...props }) => {
-  const { label, value, operator } = props
+  const { label, value, operator, type } = props
+  const isBoolean = type === 'boolean'
   const { t } = useTranslation()
   const values = Array.isArray(value)
     ? value.join(', ')
@@ -16,7 +17,7 @@ const Item: React.FC<ItemProps> = ({ onEdit, ...props }) => {
     <div className="rsql-filter-item" onClick={() => onEdit(props)}>
       <strong>{label}</strong>
       <p>{t(`operators.${operator}`)}</p>
-      <p>{values}</p>
+      <p>{isBoolean ? t(values) : values}</p>
     </div>
   )
 }

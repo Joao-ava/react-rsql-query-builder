@@ -4,6 +4,8 @@ const ptBr: Locale = {
   add: 'Adicionar filtro',
   search: 'Buscar',
   submit: 'Enviar',
+  true: 'verdadeiro',
+  false: 'falso',
   operators: {
     equals: 'é',
     notEquals: 'não é',
