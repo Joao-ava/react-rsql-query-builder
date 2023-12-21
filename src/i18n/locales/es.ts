@@ -4,6 +4,7 @@ const es: Locale = {
   add: 'Agregar filtro',
   search: 'Buscar',
   submit: 'Mandar',
+  select: 'Seleccionar',
   operators: {
     equals: 'es',
     notEquals: 'no es',

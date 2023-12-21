@@ -2,9 +2,9 @@ import React, { forwardRef, HTMLInputTypeAttribute } from 'react'
 import { BiTrashAlt, BiX } from 'react-icons/bi'
 import { useTranslation } from 'react-i18next'
 
-import { FieldType, FilterItem } from '../../../types'
+import { FieldType, FilterItem, Option } from '../../../types'
 import { defaultOperators } from '../../../utils'
-import { useComponentsProvider } from '../../../providers/ComponentsProvider.tsx'
+import { useComponentsProvider } from '../../../providers/ComponentsProvider'
 
 const inputType: Record<FieldType, HTMLInputTypeAttribute> = {
   string: 'text',
@@ -39,30 +39,33 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
   },
   ref
 ) => {
-  const { Button, Input, Checkbox } = useComponentsProvider()
+  const { Button, Input, Checkbox, Select } = useComponentsProvider()
   const { t } = useTranslation()
   const allOperators = operators?.length ? operators : defaultOperators[type]
+  const allOperatorsOptions = allOperators.map((item) => ({
+    label: t(`operators.${item}`),
+    value: item
+  }))
   const isBoolean = type === 'boolean'
   const isArray = type === 'array'
+  const empty = { value: '', label: t('select') }
   const valueArray = value ? (value as string[]) : []
   const possibleOptions = isArray
-    ? options?.filter((option) => !valueArray.includes(option.value))
+    ? options?.filter((option) => !valueArray.includes(option.value)) ?? []
     : []
   return (
     <div className="rsql-box rsql-select-filter" ref={ref}>
       <div className="rsql-select-filter-row">
         <p>{label}</p>
-        <select
-          defaultValue={operator}
-          className="rsql-select-filter-select"
-          onChange={(e) => setOperator(e.target.value)}
-        >
-          {allOperators?.map((item) => (
-            <option key={item} value={item}>
-              {t(`operators.${item}`)}
-            </option>
-          ))}
-        </select>
+        <Select
+          items={allOperatorsOptions}
+          option={
+            allOperatorsOptions.find(
+              (item) => item.value === operator
+            ) as Option
+          }
+          setValue={setOperator}
+        />
         <button onClick={onRemove} className="rsql-btn-icon">
           <BiTrashAlt />
         </button>
@@ -70,24 +73,14 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
 
       {isArray && (
         <div>
-          <select
+          <Select
+            items={[empty, ...possibleOptions]}
+            option={
+              possibleOptions?.find((item) => item.value === value) ?? empty
+            }
+            setValue={(e) => setValue([...value, e])}
             className="rsql-input rsql-select-filter-select-value"
-            value=""
-            onChange={(e) => setValue([...value, e.target.value])}
-          >
-            <option value="" className="rsql-select-filter-select-option">
-              Select a value
-            </option>
-            {possibleOptions?.map((item) => (
-              <option
-                key={item.value}
-                value={item.value}
-                className="rsql-select-filter-select-option"
-              >
-                {item.label}
-              </option>
-            ))}
-          </select>
+          />
           <div className="rsql-select-filter-select-values">
             {valueArray.map((item) => {
               const option = options?.find(({ value }) => item === value)

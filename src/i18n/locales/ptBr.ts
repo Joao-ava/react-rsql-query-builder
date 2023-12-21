@@ -4,6 +4,7 @@ const ptBr: Locale = {
   add: 'Adicionar filtro',
   search: 'Buscar',
   submit: 'Enviar',
+  select: 'Selecione',
   operators: {
     equals: 'é',
     notEquals: 'não é',
