@@ -6,6 +6,7 @@ const es: Locale = {
   submit: 'Mandar',
   true: 'verdadero',
   false: 'falso',
+  select: 'Seleccionar',
   operators: {
     equals: 'es',
     notEquals: 'no es',

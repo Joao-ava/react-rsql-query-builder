@@ -6,6 +6,7 @@ const en: Locale = {
   submit: 'Submit',
   true: 'true',
   false: 'false',
+  select: 'Select',
   operators: {
     equals: 'is',
     notEquals: 'not is',

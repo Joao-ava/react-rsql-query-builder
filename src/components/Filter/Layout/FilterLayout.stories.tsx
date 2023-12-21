@@ -1,9 +1,9 @@
 import React from 'react'
-import { StoryFn, Meta } from '@storybook/react'
+import { Meta, StoryFn } from '@storybook/react'
 
 import builder from '@rsql/builder'
 
-import { Layout, FilterProps } from './index.tsx'
+import { FilterProps, Layout } from './index.tsx'
 
 export default {
   title: 'components/Filter/Layout',
@@ -36,7 +36,14 @@ const defaultProps: FilterProps = {
   onAddFilterItem: () => undefined,
   onCloseFieldModel: () => undefined,
   onCloseFilterModel: () => undefined,
-  onEdit: () => undefined
+  onEdit: () => undefined,
+  editField: {
+    selector: 'name',
+    label: 'Name',
+    type: 'string',
+    value: 'John Doe',
+    operator: '=='
+  }
 }
 
 export const Empty = Template.bind({})

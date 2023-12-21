@@ -18,7 +18,8 @@ const defaultProps: ItemProps = {
   selector: 'year',
   operator: 'equals',
   value: '1989',
-  onEdit: () => undefined
+  onEdit: () => undefined,
+  isSelected: false
 }
 
 export const Equals = Template.bind({})

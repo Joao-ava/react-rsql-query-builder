@@ -6,6 +6,7 @@ const ptBr: Locale = {
   submit: 'Enviar',
   true: 'verdadeiro',
   false: 'falso',
+  select: 'Selecione',
   operators: {
     equals: 'é',
     notEquals: 'não é',
