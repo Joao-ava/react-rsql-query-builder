@@ -47,7 +47,7 @@ const Filter: React.FC = () => {
   - **selector**: Is the path of your field do you want filter, (type `string`).
   - **label**: Is display name of field (type `string`).
   - **operators?**: Is operators valid in your field, is optional, one of `equals`, `notEquals`, `contains`, `notContains`, `moreThan`, `moreThanOrEqual`, `lessThan`, `lessThanOrEqual`, `in`, `out`.
-  - **type**: Is type of field, one of `string`, `number`, `date`, `array`.
+  - **type**: Is type of field, one of `string`, `number`, `date`, `boolean`, `array`.
   - **options?**: Array of options you can select if `type` is `array`, not necessary if `type` is other value.
     - **label**: Is display name of value (type `string`).
     - **value**: Is value used in filter (type generic `T` default `string`).
@@ -55,6 +55,13 @@ const Filter: React.FC = () => {
 - **i18n**: i18n object for translation is optional.
 - **Button**: Button component following `ButtonHTMLAttributes<HTMLButtonElement>` is optional, you can use your component button of your library.
 - **Input**: Input component following `InputHTMLAttributes<HTMLInputElement>` is optional, you can use your component input of your library.
+- **Checkbox**: Checkbox component following `InputHTMLAttributes<HTMLInputElement>` is optional, you can use your component checkbox of your library.
+- **Select**: Select component following `SelectProps<T = string>` is optional, you can use your component select of your library.
+  - **SelectProps**: is a type props for select.
+    - **option**: is current value of select (type `Option<T = string> = { label: string; value: T }`).
+    - **items**: is a list of items to select display (type array of `Option`).
+    - **setValue**: is a function to call when select an item of `items` (type `(value: T) => void`).
+    - **className**: is a optional className to set css class to component (type `string`).
 
 ## Translation
 
