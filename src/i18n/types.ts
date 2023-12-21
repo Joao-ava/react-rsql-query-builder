@@ -4,6 +4,7 @@ export type Locale = {
   submit: string
   true: string
   false: string
+  select: string
   operators: {
     equals: string
     notEquals: string

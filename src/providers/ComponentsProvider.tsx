@@ -7,11 +7,13 @@ import {
   Checkbox as DefaultCheckbox,
   CheckboxProps
 } from '../components/Checkbox'
+import { Select as DefaultSelect, SelectProps } from '../components/Select'
 
 type ComponentsContextType = {
   Button: React.FC<ButtonProps>
   Input: React.FC<InputProps>
   Checkbox: React.FC<CheckboxProps>
+  Select: React.FC<SelectProps>
 }
 
 const ComponentsContext = createContext({} as ComponentsContextType)
@@ -25,6 +27,7 @@ export const ComponentsProvider: React.FC<ComponentsProviderProps> = ({
   Button = DefaultButton,
   Input = DefaultInput,
   Checkbox = DefaultCheckbox,
+  Select = DefaultSelect,
   language,
   children
 }) => {
@@ -37,7 +40,8 @@ export const ComponentsProvider: React.FC<ComponentsProviderProps> = ({
       value={{
         Button,
         Input,
-        Checkbox
+        Checkbox,
+        Select
       }}
     >
       {children}

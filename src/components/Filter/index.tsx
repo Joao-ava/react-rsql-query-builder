@@ -119,6 +119,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
       onCloseFieldModel={() => setAddFieldModal(false)}
       onCloseFilterModel={handleCloseFilterModal}
       onEdit={handleEditFilter}
+      editField={editField}
     />
   )
 }

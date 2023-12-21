@@ -22,6 +22,7 @@ export type FilterProps = SelectFieldProps &
     onCloseFilterModel: () => void
     search?: ExpressionNode
     onEdit: (item: FilterItem) => void
+    editField: FilterItem
   }
 const Layout: React.FC<FilterProps> = ({
   onAddFilter,
@@ -43,6 +44,7 @@ const Layout: React.FC<FilterProps> = ({
   setOperator,
   onAddFilterItem,
   onEdit,
+  editField,
   options
 }) => {
   const { t } = useTranslation()
@@ -86,6 +88,10 @@ const Layout: React.FC<FilterProps> = ({
             key={item.selector + item.operator + item.value}
             onEdit={onEdit}
             {...item}
+            isSelected={
+              item.selector === editField.selector &&
+              item.operator.slice(1, -1) === editField.operator
+            }
             operator={comparisonToSelectFieldOperator(
               item.operator,
               !Array.isArray(item.value) ? item.value : ''
