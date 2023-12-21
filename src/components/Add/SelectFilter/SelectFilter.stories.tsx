@@ -60,6 +60,8 @@ ArrayField.args = {
   options: [
     { label: 'Active', value: 'active' },
     { label: 'Deactivate', value: 'deactivate' },
-    { label: 'Pending', value: 'pending' }
+    { label: 'Pending', value: 'pending' },
+    { label: 'Closed', value: 'closed' },
+    { label: 'Soon', value: 'soon' }
   ]
 }
