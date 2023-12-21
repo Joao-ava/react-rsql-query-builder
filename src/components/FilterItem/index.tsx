@@ -5,15 +5,23 @@ import { FilterItem } from '../../types'
 
 export type ItemProps = FilterItem & {
   onEdit: (item: FilterItem) => void
+  isSelected: boolean
 }
-const Item: React.FC<ItemProps> = ({ onEdit, ...props }) => {
+const Item: React.FC<ItemProps> = ({ onEdit, isSelected, ...props }) => {
   const { label, value, operator } = props
   const { t } = useTranslation()
   const values = Array.isArray(value)
     ? value.join(', ')
     : value.replaceAll('*', '')
   return (
-    <div className="rsql-filter-item" onClick={() => onEdit(props)}>
+    <div
+      className={
+        !isSelected
+          ? 'rsql-filter-item'
+          : 'rsql-filter-item rsql-filter-item-selected'
+      }
+      onClick={() => onEdit(props)}
+    >
       <strong>{label}</strong>
       <p>{t(`operators.${operator}`)}</p>
       <p>{values}</p>
