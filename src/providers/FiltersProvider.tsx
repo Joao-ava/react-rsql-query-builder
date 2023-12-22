@@ -16,11 +16,19 @@ const FiltersProvider: React.FC<FiltersProviderProps> = ({
   language = 'en',
   Button,
   Input,
+  Checkbox,
+  Select,
   ...props
 }) => {
   return (
     <I18nextProvider i18n={i18n}>
-      <ComponentsProvider Button={Button} Input={Input} language={language}>
+      <ComponentsProvider
+        Button={Button}
+        Input={Input}
+        Checkbox={Checkbox}
+        Select={Select}
+        language={language}
+      >
         <Filter {...props} />
       </ComponentsProvider>
     </I18nextProvider>
