@@ -45,7 +45,8 @@ const Layout: React.FC<FilterProps> = ({
   onAddFilterItem,
   onEdit,
   editField,
-  options
+  options,
+  onSearchItems
 }) => {
   const { t } = useTranslation()
   const items = rsqlToFilterItems(fields, search)
@@ -79,6 +80,7 @@ const Layout: React.FC<FilterProps> = ({
           onRemove={onRemove}
           operators={operators}
           options={options}
+          onSearchItems={onSearchItems}
           ref={selectFilterRef}
         />
       )}

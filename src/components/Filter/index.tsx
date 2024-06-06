@@ -114,6 +114,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
       setValue={(value) => setField({ ...field, value })}
       operators={field.operators}
       options={field.options}
+      onSearchItems={field.onSearchItems}
       onRemove={handleRemove}
       onAddFilterItem={onAddFilterItem}
       onCloseFieldModel={() => setAddFieldModal(false)}

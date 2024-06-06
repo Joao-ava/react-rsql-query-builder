@@ -10,6 +10,7 @@ export type Field = {
   operators?: SelectFieldOperator[]
   options?: Option[]
   type: FieldType
+  onSearchItems?: (search: string) => void
 }
 
 export type FilterItem = Field & {

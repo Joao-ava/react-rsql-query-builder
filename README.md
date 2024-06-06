@@ -51,6 +51,7 @@ const Filter: React.FC = () => {
   - **options?**: Array of options you can select if `type` is `array`, not necessary if `type` is other value.
     - **label**: Is display name of value (type `string`).
     - **value**: Is value used in filter (type generic `T` default `string`).
+  - **onSearchItems?**: It is a function to call in select (Not implemented by default).
 - **language**: Language is display component is optional (type `string` default `en`).
 - **i18n**: i18n object for translation is optional.
 - **Button**: Button component following `ButtonHTMLAttributes<HTMLButtonElement>` is optional, you can use your component button of your library.

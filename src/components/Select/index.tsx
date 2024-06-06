@@ -7,6 +7,7 @@ export type SelectProps<T = string> = {
   items: Option[]
   setValue: (value: T) => void
   className?: string
+  onSearchItems?: (search: string) => void
 }
 function Select({ option, items, setValue, ...props }: SelectProps) {
   const { t } = useTranslation()

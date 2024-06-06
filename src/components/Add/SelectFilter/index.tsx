@@ -35,7 +35,8 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
     onRemove,
     onAddFilterItem,
     setOperator,
-    options
+    options,
+    onSearchItems
   },
   ref
 ) => {
@@ -75,6 +76,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
         <div>
           <Select
             items={[empty, ...possibleOptions]}
+            onSearchItems={onSearchItems}
             option={
               possibleOptions?.find((item) => item.value === value) ?? empty
             }
