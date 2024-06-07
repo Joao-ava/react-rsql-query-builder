@@ -31,6 +31,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
   const [field, setField] = useState<FilterItem>(initialFieldState)
   const [editField, setEditField] = useState<FilterItem>(initialFieldState)
   const handleAddFilter = () => setAddFieldModal(true)
+  const currentField = fields.find((item) => item.selector === field.selector)
   const handleSelectField = (selector: string) => {
     setAddFieldModal(false)
     setSelectFilterModal(true)
@@ -113,7 +114,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
       value={field.value as string}
       setValue={(value) => setField({ ...field, value })}
       operators={field.operators}
-      options={field.options}
+      options={currentField?.options}
       onSearchItems={field.onSearchItems}
       onRemove={handleRemove}
       onAddFilterItem={onAddFilterItem}
