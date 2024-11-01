@@ -7,12 +7,22 @@ export type ItemProps = FilterItem & {
   onEdit: (item: FilterItem) => void
   isSelected: boolean
 }
-const Item: React.FC<ItemProps> = ({ onEdit, isSelected, ...props }) => {
+const Item: React.FC<ItemProps> = ({
+  onEdit,
+  isSelected,
+  options,
+  ...props
+}) => {
   const { label, value, operator, type } = props
   const isBoolean = type === 'boolean'
   const { t } = useTranslation()
   const values = Array.isArray(value)
-    ? value.join(', ')
+    ? value
+        .map(
+          (item) =>
+            options?.find((option) => item === option.value)?.label ?? item
+        )
+        .join(', ')
     : value.replaceAll('*', '')
   return (
     <div
