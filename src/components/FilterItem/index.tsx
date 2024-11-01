@@ -14,16 +14,22 @@ const Item: React.FC<ItemProps> = ({
   ...props
 }) => {
   const { label, value, operator, type } = props
-  const isBoolean = type === 'boolean'
   const { t } = useTranslation()
-  const values = Array.isArray(value)
-    ? value
+
+  const parseValue = () => {
+    if (Array.isArray(value)) {
+      return value
         .map(
           (item) =>
             options?.find((option) => item === option.value)?.label ?? item
         )
         .join(', ')
-    : value.replaceAll('*', '')
+    }
+    if (type === 'boolean') return t(value)
+    if (type === 'date') return value.split('-').reverse().join('/')
+    return value.replaceAll('*', '')
+  }
+
   return (
     <div
       className={
@@ -35,7 +41,7 @@ const Item: React.FC<ItemProps> = ({
     >
       <strong>{label}</strong>
       <p>{t(`operators.${operator}`)}</p>
-      <p>{isBoolean ? t(values) : values}</p>
+      <p>{parseValue()}</p>
     </div>
   )
 }
