@@ -1,19 +1,22 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Option } from '../../types'
+import { CommonSelectProps, Option } from '../../types'
 
-export type SelectProps<T = string> = {
-  items: Option[]
+export type MultiSelectProps<T = string> = CommonSelectProps & {
   values: Option[]
   setValues: (value: T[]) => void
-  className?: string
-  onSearchItems?: (search: string) => void
 }
-function Select({ items, setValues, values, ...props }: SelectProps) {
+const MultiSelect: React.FC<MultiSelectProps> = ({
+  setValues,
+  values,
+  items,
+  ...props
+}) => {
   const { t } = useTranslation()
   return (
     <select
-      className="rsql-select-filter-select"
+      className="rsql-select-filter-select multi"
       onChange={(event) =>
         setValues([...values.map((option) => option.value), event.target.value])
       }
@@ -28,4 +31,4 @@ function Select({ items, setValues, values, ...props }: SelectProps) {
   )
 }
 
-export { Select }
+export { MultiSelect }

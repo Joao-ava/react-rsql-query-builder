@@ -7,17 +7,25 @@ import {
   Checkbox as DefaultCheckbox,
   CheckboxProps
 } from '../components/Checkbox'
-import { Select as DefaultSelect, SelectProps } from '../components/Select'
+import {
+  SingleSelect as DefaultSingleSelect,
+  SingleSelectProps
+} from '../components/SingleSelect'
 import {
   Datepicker as DefaultDatepicker,
   DatepickerProps
 } from '../components/Datepicker'
+import {
+  MultiSelect as DefaultMultiSelect,
+  MultiSelectProps
+} from '../components/MultiSelect'
 
 type ComponentsContextType = {
   Button: React.FC<ButtonProps>
   Input: React.FC<InputProps>
   Checkbox: React.FC<CheckboxProps>
-  Select: React.FC<SelectProps>
+  SingleSelect: React.FC<SingleSelectProps>
+  MultiSelect: React.FC<MultiSelectProps>
   DatePicker: React.FC<DatepickerProps>
 }
 
@@ -32,7 +40,8 @@ export const ComponentsProvider: React.FC<ComponentsProviderProps> = ({
   Button = DefaultButton,
   Input = DefaultInput,
   Checkbox = DefaultCheckbox,
-  Select = DefaultSelect,
+  SingleSelect = DefaultSingleSelect,
+  MultiSelect = DefaultMultiSelect,
   DatePicker = DefaultDatepicker,
   language,
   children
@@ -47,7 +56,8 @@ export const ComponentsProvider: React.FC<ComponentsProviderProps> = ({
         Button,
         Input,
         Checkbox,
-        Select,
+        SingleSelect,
+        MultiSelect,
         DatePicker
       }}
     >
