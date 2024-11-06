@@ -3,19 +3,20 @@ import { useTranslation } from 'react-i18next'
 import { Option } from '../../types'
 
 export type SelectProps<T = string> = {
-  option: Option
   items: Option[]
-  setValue: (value: T) => void
+  values: Option[]
+  setValues: (value: T[]) => void
   className?: string
   onSearchItems?: (search: string) => void
 }
-function Select({ option, items, setValue, ...props }: SelectProps) {
+function Select({ items, setValues, values, ...props }: SelectProps) {
   const { t } = useTranslation()
   return (
     <select
       className="rsql-select-filter-select"
-      value={option.value}
-      onChange={(event) => setValue(event.target.value)}
+      onChange={(event) =>
+        setValues([...values.map((option) => option.value), event.target.value])
+      }
       {...props}
     >
       {items?.map((item) => (
