@@ -56,13 +56,13 @@ const ParsedField: React.FC<ParsedFieldProps> = ({
     return (
       <div>
         <Select
+          className="rsql-input rsql-select-filter-select-value"
           items={[empty, ...possibleOptions]}
           onSearchItems={onSearchItems}
           values={valueArray
             .map((value) => options?.find((option) => option.value === value))
             .filter((item) => !!item)}
           setValues={(values) => setValue(values)}
-          className="rsql-input rsql-select-filter-select-value"
         />
         <div className="rsql-select-filter-select-values">
           {valueArray.map((item) => {

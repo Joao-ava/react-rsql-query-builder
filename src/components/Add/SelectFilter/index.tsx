@@ -40,12 +40,12 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
         <p>{label}</p>
         <Select
           items={allOperatorsOptions}
-          option={
+          values={[
             allOperatorsOptions.find(
               (item) => item.value === operator
             ) as Option
-          }
-          setValue={setOperator}
+          ]}
+          setValues={(values) => setOperator([...values].reverse()[0])}
         />
         <button onClick={onRemove} className="rsql-btn-icon">
           <BiTrashAlt />
