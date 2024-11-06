@@ -17,7 +17,8 @@ const FiltersProvider: React.FC<FiltersProviderProps> = ({
   Button,
   Input,
   Checkbox,
-  Select,
+  SingleSelect,
+  MultiSelect,
   ...props
 }) => {
   return (
@@ -26,7 +27,8 @@ const FiltersProvider: React.FC<FiltersProviderProps> = ({
         Button={Button}
         Input={Input}
         Checkbox={Checkbox}
-        Select={Select}
+        SingleSelect={SingleSelect}
+        MultiSelect={MultiSelect}
         language={language}
       >
         <Filter {...props} />
