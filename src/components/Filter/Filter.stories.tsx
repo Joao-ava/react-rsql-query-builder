@@ -21,6 +21,7 @@ const defaultProps: FilterProps = {
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
     { selector: 'isActive', label: 'Active', type: 'boolean' },
+    { selector: 'createdAt', label: 'Created at', type: 'date' },
     {
       selector: 'status',
       label: 'Status',
