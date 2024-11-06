@@ -1,5 +1,7 @@
 import { SelectFieldOperator } from './utils'
 
+export type { SingleSelectProps } from './components/SingleSelect'
+export type { MultiSelectProps } from './components/MultiSelect'
 export type SingleType = 'string' | 'number' | 'date' | 'boolean'
 export type MultiType = 'array'
 export type FieldType = SingleType | MultiType
@@ -16,4 +18,10 @@ export type Field = {
 export type FilterItem = Field & {
   operator: string
   value: string | string[]
+}
+
+export type CommonSelectProps = {
+  className?: string
+  onSearchItems?: (search: string) => void
+  items: Option[]
 }

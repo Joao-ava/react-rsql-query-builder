@@ -26,7 +26,7 @@ const ParsedField: React.FC<ParsedFieldProps> = ({
   options,
   onSearchItems
 }) => {
-  const { Input, Checkbox, Select, DatePicker } = useComponentsProvider()
+  const { Input, Checkbox, MultiSelect, DatePicker } = useComponentsProvider()
   const { t } = useTranslation()
 
   if (type === 'boolean') {
@@ -55,7 +55,7 @@ const ParsedField: React.FC<ParsedFieldProps> = ({
       options?.filter((option) => !valueArray.includes(option.value)) ?? []
     return (
       <div>
-        <Select
+        <MultiSelect
           className="rsql-input rsql-select-filter-select-value"
           items={[empty, ...possibleOptions]}
           onSearchItems={onSearchItems}

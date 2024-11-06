@@ -18,7 +18,7 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
   HTMLDivElement,
   SelectFilterProps
 > = (params, ref) => {
-  const { Button, Select } = useComponentsProvider()
+  const { Button, SingleSelect } = useComponentsProvider()
   const {
     label,
     operators,
@@ -38,14 +38,14 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
     <div className="rsql-box rsql-select-filter" ref={ref}>
       <div className="rsql-select-filter-row">
         <p>{label}</p>
-        <Select
+        <SingleSelect
           items={allOperatorsOptions}
-          values={[
+          value={
             allOperatorsOptions.find(
               (item) => item.value === operator
             ) as Option
-          ]}
-          setValues={(values) => setOperator([...values].reverse()[0])}
+          }
+          setValue={(value) => setOperator(value)}
         />
         <button onClick={onRemove} className="rsql-btn-icon">
           <BiTrashAlt />
