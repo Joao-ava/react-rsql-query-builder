@@ -1,9 +1,16 @@
-import React, { ButtonHTMLAttributes } from 'react'
+import { forwardRef, HTMLProps } from 'react'
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
+export type ButtonProps = HTMLProps<HTMLButtonElement>
 
-export const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
-  <button {...props} className="rsql-btn">
-    {children}
-  </button>
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, ...props }, ref) => (
+    <button
+      ref={ref}
+      {...props}
+      type="button"
+      className={`rsql-btn ${props.className}`}
+    >
+      {children}
+    </button>
+  )
 )

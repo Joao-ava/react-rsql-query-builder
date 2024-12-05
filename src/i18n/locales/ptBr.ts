@@ -3,7 +3,8 @@ import { Locale } from '../types.ts'
 const ptBr: Locale = {
   add: 'Adicionar filtro',
   search: 'Buscar',
-  submit: 'Enviar',
+  remove: 'Remover',
+  apply: 'Aplicar',
   true: 'verdadeiro',
   false: 'falso',
   select: 'Selecione',

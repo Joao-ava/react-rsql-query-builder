@@ -16,6 +16,7 @@ const Template: StoryFn<React.JSXElementConstructor<SelectFilterProps>> = (
 }
 
 const defaultProps: SelectFilterProps = {
+  onApply: () => undefined,
   operator: 'equals',
   selector: 'age',
   type: 'string',
@@ -31,7 +32,6 @@ const defaultProps: SelectFilterProps = {
   value: '2',
   setValue: () => undefined,
   onRemove: () => undefined,
-  onAddFilterItem: () => undefined,
   setOperator: () => undefined
 }
 

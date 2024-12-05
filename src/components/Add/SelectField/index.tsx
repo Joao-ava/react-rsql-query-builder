@@ -3,6 +3,7 @@ import { IconType } from 'react-icons'
 import { useTranslation } from 'react-i18next'
 import {
   BiCalendarAlt,
+  BiChevronRight,
   BiDownArrowCircle,
   BiHash,
   BiText,
@@ -35,29 +36,31 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
     item.label.toLowerCase().includes(search.toLowerCase())
   )
   return (
-    <div className="rsql-box rsql-select-field" ref={ref}>
+    <section className="rsql-fields" ref={ref}>
       <Input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         name="rsql-field-search"
         placeholder={t('search') as string}
       />
-      <div>
+      <ul className="rsql-fields-list">
         {items.map((item) => {
           const Icon = iconsByType[item.type]
           return (
-            <div
-              className="rsql-select-field-option"
-              key={item.selector}
-              onClick={() => onSelectField(item.selector)}
-            >
-              <Icon />
-              <p>{item.label}</p>
-            </div>
+            <li className="rsql-field">
+              <button
+                className="rsql-field-btn"
+                onClick={() => onSelectField(item.selector)}
+              >
+                <Icon size={16} />
+                {item.label}
+                <BiChevronRight size={16} />
+              </button>
+            </li>
           )
         })}
-      </div>
-    </div>
+      </ul>
+    </section>
   )
 }
 

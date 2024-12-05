@@ -1,23 +1,21 @@
-import React, { forwardRef } from 'react'
-import { BiTrashAlt } from 'react-icons/bi'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FilterItem, Option } from '../../../types'
 import { defaultOperators } from '../../../utils'
 import { useComponentsProvider } from '../../../providers/ComponentsProvider'
 import { ParsedField } from './Field'
+import { BiTrash } from 'react-icons/bi'
 
 export type SelectFilterProps = FilterItem & {
   setOperator: (param: string) => void
   setValue: (param: string | string[]) => void
-  onRemove: () => void
-  onAddFilterItem: () => void
+  onCancel?: () => void
+  onRemove?: () => void
+  onApply: () => void
 }
 
-const SelectFilterFunction: React.ForwardRefRenderFunction<
-  HTMLDivElement,
-  SelectFilterProps
-> = (params, ref) => {
+const SelectFilter: React.FC<SelectFilterProps> = (params) => {
   const { Button, SingleSelect } = useComponentsProvider()
   const {
     label,
@@ -25,8 +23,9 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
     operator,
     type,
     onRemove,
-    onAddFilterItem,
-    setOperator
+    onCancel,
+    setOperator,
+    onApply
   } = params
   const { t } = useTranslation()
   const allOperators = operators?.length ? operators : defaultOperators[type]
@@ -35,8 +34,8 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
     value: item
   }))
   return (
-    <div className="rsql-box rsql-select-filter" ref={ref}>
-      <div className="rsql-select-filter-row">
+    <div className="rsql-set-filter">
+      <div className="rsql-set-filter-header">
         <p>{label}</p>
         <SingleSelect
           items={allOperatorsOptions}
@@ -47,18 +46,23 @@ const SelectFilterFunction: React.ForwardRefRenderFunction<
           }
           setValue={(value) => setOperator(value)}
         />
-        <button onClick={onRemove} className="rsql-btn-icon">
-          <BiTrashAlt />
-        </button>
+        {onRemove && (
+          <button className="rsql-btn-icon" onClick={onRemove}>
+            <BiTrash />
+          </button>
+        )}
       </div>
       <ParsedField {...params} />
-      <div className="rsql-row end">
-        <Button onClick={onAddFilterItem}>{t('submit')}</Button>
+      <div className="rsql-set-filter-footer">
+        {onCancel && (
+          <Button className="secondary" onClick={onCancel}>
+            {t('cancel')}
+          </Button>
+        )}
+        <Button onClick={onApply}>{t('apply')}</Button>
       </div>
     </div>
   )
 }
-
-const SelectFilter = forwardRef(SelectFilterFunction)
 
 export { SelectFilter }

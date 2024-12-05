@@ -14,10 +14,10 @@ const inputType: Record<FieldType, HTMLInputTypeAttribute> = {
 }
 
 type ParsedFieldProps = FilterItem & {
-  setOperator: (param: string) => void
+  // setOperator: (param: string) => void
   setValue: (param: string | string[]) => void
-  onRemove: () => void
-  onAddFilterItem: () => void
+  // onRemove: () => void
+  // onAddFilterItem: () => void
 }
 const ParsedField: React.FC<ParsedFieldProps> = ({
   type,
