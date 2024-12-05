@@ -1,11 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { BiTrash } from 'react-icons/bi'
 
 import { FilterItem, Option } from '../../../types'
 import { defaultOperators } from '../../../utils'
 import { useComponentsProvider } from '../../../providers/ComponentsProvider'
 import { ParsedField } from './Field'
-import { BiTrash } from 'react-icons/bi'
 
 export type SelectFilterProps = FilterItem & {
   setOperator: (param: string) => void
