@@ -15,29 +15,27 @@ const Template: StoryFn<React.JSXElementConstructor<FilterProps>> = (args) => (
 )
 
 const defaultProps: FilterProps = {
-  operator: '==',
-  selector: '',
-  type: 'string',
+  onEditFilter: () => undefined,
+  onRemoveFilter: () => undefined,
+  onSelectFilter: () => undefined,
+  onUnselectField: () => undefined,
+  setEditionFilter: () => undefined,
+  setField: () => undefined,
   fields: [
     { selector: 'name', label: 'Name', type: 'string' },
     { selector: 'age', label: 'Age', type: 'number' },
     { selector: 'status', label: 'Status', type: 'array' }
   ],
-  addFieldModal: false,
   onSelectField: () => undefined,
-  onAddFilter: () => undefined,
-  label: 'Name',
-  value: 'John Doe',
-  setValue: () => undefined,
-  selectFilterModal: false,
-  operators: ['equals', 'notEquals'],
-  setOperator: () => undefined,
-  onRemove: () => undefined,
   onAddFilterItem: () => undefined,
-  onCloseFieldModel: () => undefined,
-  onCloseFilterModel: () => undefined,
-  onEdit: () => undefined,
-  editField: {
+  field: {
+    selector: 'name',
+    label: 'Name',
+    type: 'string',
+    value: 'John Doe',
+    operator: '=='
+  },
+  editionFilter: {
     selector: 'name',
     label: 'Name',
     type: 'string',

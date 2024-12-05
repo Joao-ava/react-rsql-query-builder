@@ -26,40 +26,33 @@ const initialFieldState: FilterItem = {
   operator: '=='
 }
 const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
-  const [addFieldModal, setAddFieldModal] = useState(false)
-  const [selectFilterModal, setSelectFilterModal] = useState(false)
   const [field, setField] = useState<FilterItem>(initialFieldState)
-  const [editField, setEditField] = useState<FilterItem>(initialFieldState)
-  const handleAddFilter = () => setAddFieldModal(true)
-  const currentField = fields.find((item) => item.selector === field.selector)
+  const [originalFilter, setOriginalFilter] =
+    useState<FilterItem>(initialFieldState)
+  const [editionFilter, setEditionFilter] =
+    useState<FilterItem>(initialFieldState)
+
+  const makeField = (item: FilterItem): FilterItem => ({
+    ...item,
+    operator: selectFieldToComparisonOperator(item.operator),
+    value: searchableSelectField.includes(item.operator)
+      ? `*${item.value}*`
+      : item.value
+  })
+
   const handleSelectField = (selector: string) => {
-    setAddFieldModal(false)
-    setSelectFilterModal(true)
     const field = fields.find((item) => item.selector === selector)
     if (!field) return
     const [operator] = field.operators || defaultOperators[field.type]
     setField({ ...field, selector, operator, value: '' })
   }
 
+  const handleUnselectField = () => {
+    setField(initialFieldState)
+  }
+
   const onAddFilterItem = () => {
-    setSelectFilterModal(false)
-    const rsqlField = {
-      ...field,
-      operator: selectFieldToComparisonOperator(field.operator),
-      value: searchableSelectField.includes(field.operator)
-        ? `*${field.value}*`
-        : field.value
-    }
-    if (editField.selector) {
-      const rsqlEditField = {
-        ...editField,
-        operator: selectFieldToComparisonOperator(editField.operator)
-      }
-      setSearch(rsqlReplaceFilter(rsqlEditField, rsqlField, search))
-      setField(initialFieldState)
-      setEditField(initialFieldState)
-      return
-    }
+    const rsqlField = makeField(field)
     const comparison = builder.comparison(
       rsqlField.selector,
       rsqlField.operator,
@@ -69,10 +62,9 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
     setField(initialFieldState)
   }
 
-  const handleEditFilter = (item: FilterItem): void => {
-    setSelectFilterModal(true)
-    setEditField(item)
-    setField({
+  const handleSelectFilter = (item: FilterItem) => {
+    setOriginalFilter(item)
+    setEditionFilter({
       ...item,
       value: searchableSelectField.includes(item.operator)
         ? item.value.slice(1, -1)
@@ -80,48 +72,50 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
     })
   }
 
-  const handleCloseFilterModal = () => {
-    setSelectFilterModal(false)
-    setEditField(initialFieldState)
+  const handleRemoveFilter = () => {
+    setSearch(
+      rsqlRemoveFilter(
+        {
+          ...editionFilter,
+          operator: selectFieldToComparisonOperator(editionFilter.operator)
+        },
+        search
+      )
+    )
+    setOriginalFilter(initialFieldState)
+    setEditionFilter(initialFieldState)
   }
 
-  const handleRemove = () => {
-    if (editField.selector) {
-      const rsqlEditField = {
-        ...editField,
-        operator: selectFieldToComparisonOperator(editField.operator)
-      }
-      setSearch(rsqlRemoveFilter(rsqlEditField, search))
-    }
-    setSelectFilterModal(false)
-    setField(initialFieldState)
-    setEditField(initialFieldState)
+  const handleEditFilter = () => {
+    const newFilter = makeField(editionFilter)
+    setSearch(
+      rsqlReplaceFilter(
+        {
+          ...originalFilter,
+          operator: selectFieldToComparisonOperator(originalFilter.operator)
+        },
+        newFilter,
+        search
+      )
+    )
+    setOriginalFilter(initialFieldState)
+    setEditionFilter(initialFieldState)
   }
 
   return (
     <Layout
       fields={fields}
-      addFieldModal={addFieldModal}
       search={search}
-      onAddFilter={handleAddFilter}
-      selectFilterModal={selectFilterModal}
       onSelectField={handleSelectField}
-      selector={field.selector}
-      label={field.label}
-      operator={field.operator}
-      setOperator={(operator) => setField({ ...field, operator })}
-      type={field.type}
-      value={field.value as string}
-      setValue={(value) => setField({ ...field, value })}
-      operators={field.operators}
-      options={currentField?.options}
-      onSearchItems={field.onSearchItems}
-      onRemove={handleRemove}
+      onUnselectField={handleUnselectField}
+      field={field}
+      setField={setField}
       onAddFilterItem={onAddFilterItem}
-      onCloseFieldModel={() => setAddFieldModal(false)}
-      onCloseFilterModel={handleCloseFilterModal}
-      onEdit={handleEditFilter}
-      editField={editField}
+      onSelectFilter={handleSelectFilter}
+      onRemoveFilter={handleRemoveFilter}
+      editionFilter={editionFilter}
+      setEditionFilter={setEditionFilter}
+      onEditFilter={handleEditFilter}
     />
   )
 }

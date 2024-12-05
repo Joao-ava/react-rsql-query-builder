@@ -8,100 +8,119 @@ import {
 } from '../../../utils'
 import { Item } from '../../FilterItem'
 import { SelectField, SelectFieldProps } from '../../Add/SelectField'
-import { SelectFilter, SelectFilterProps } from '../../Add/SelectFilter'
-import { useClickOutside } from '../../../hooks/useClickOutside'
+import { SelectFilter } from '../../Add/SelectFilter'
 import { FilterItem } from '../../../types'
-import { useComponentsProvider } from '../../../providers/ComponentsProvider.tsx'
+import { Popover, PopoverContent, PopoverTrigger } from '../../Popover'
 
-export type FilterProps = SelectFieldProps &
-  SelectFilterProps & {
-    onAddFilter: () => void
-    addFieldModal: boolean
-    onCloseFieldModel: () => void
-    selectFilterModal: boolean
-    onCloseFilterModel: () => void
-    search?: ExpressionNode
-    onEdit: (item: FilterItem) => void
-    editField: FilterItem
-  }
+export type FilterProps = SelectFieldProps & {
+  onUnselectField: () => void
+  search?: ExpressionNode
+  field: FilterItem
+  onAddFilterItem: () => void
+  setField: (filter: FilterItem) => void
+  onSelectFilter: (item: FilterItem) => void
+  onRemoveFilter: () => void
+  editionFilter: FilterItem
+  onEditFilter: () => void
+  setEditionFilter: (filter: FilterItem) => void
+}
 const Layout: React.FC<FilterProps> = ({
-  onAddFilter,
-  search,
-  addFieldModal,
-  onCloseFieldModel,
   fields,
+  search,
+  field,
   onSelectField,
-  selectFilterModal,
-  onCloseFilterModel,
-  label,
-  value,
-  setValue,
-  onRemove,
-  operators,
-  selector,
-  type,
-  operator,
-  setOperator,
   onAddFilterItem,
-  onEdit,
-  editField,
-  options,
-  onSearchItems
+  setField,
+  onUnselectField,
+  onSelectFilter,
+  editionFilter,
+  onEditFilter,
+  setEditionFilter,
+  onRemoveFilter
 }) => {
   const { t } = useTranslation()
-  const items = rsqlToFilterItems(fields, search)
+  const appliedFilters = rsqlToFilterItems(fields, search)
   const selectFieldRef = useRef<HTMLDivElement>(null)
-  const selectFilterRef = useRef<HTMLDivElement>(null)
-  const { Button } = useComponentsProvider()
-
-  useClickOutside(selectFieldRef, () => onCloseFieldModel())
-  useClickOutside(selectFilterRef, () => onCloseFilterModel())
 
   return (
-    <div className="rsql-filter">
-      <Button onClick={onAddFilter}>{t('add')}</Button>
-      {addFieldModal && (
-        <SelectField
-          fields={fields}
-          onSelectField={onSelectField}
-          ref={selectFieldRef}
-        />
-      )}
-      {selectFilterModal && (
-        <SelectFilter
-          setOperator={setOperator}
-          onAddFilterItem={onAddFilterItem}
-          operator={operator}
-          selector={selector}
-          type={type}
-          label={label}
-          value={value}
-          setValue={setValue}
-          onRemove={onRemove}
-          operators={operators}
-          options={options}
-          onSearchItems={onSearchItems}
-          ref={selectFilterRef}
-        />
-      )}
-      <div className="rsql-filter-items">
-        {items.map((item) => (
-          <Item
-            key={item.selector + item.operator + item.value}
-            onEdit={onEdit}
-            {...item}
-            isSelected={
-              item.selector === editField.selector &&
-              item.operator.slice(1, -1) === editField.operator
-            }
-            operator={comparisonToSelectFieldOperator(
-              item.operator,
-              !Array.isArray(item.value) ? item.value : ''
+    <main className="rsql-main">
+      <Popover>
+        <PopoverTrigger className="rsql-popover-trigger">
+          {t('add')}
+        </PopoverTrigger>
+        <PopoverContent>
+          <section className="rsql-filter-box">
+            {!field.selector && (
+              <SelectField
+                fields={fields}
+                onSelectField={onSelectField}
+                ref={selectFieldRef}
+              />
             )}
-          />
+            {field.selector && (
+              <SelectFilter
+                onApply={onAddFilterItem}
+                label={field.label}
+                selector={field.selector}
+                type={field.type}
+                operators={field.operators}
+                operator={field.operator}
+                setOperator={(operator) => setField({ ...field, operator })}
+                value={field.value}
+                setValue={(value) => setField({ ...field, value })}
+                onCancel={onUnselectField}
+                options={
+                  fields.find((item) => item.selector === field.selector)
+                    ?.options
+                }
+                onSearchItems={field.onSearchItems}
+              />
+            )}
+          </section>
+        </PopoverContent>
+      </Popover>
+      <ul className="rsql-filters">
+        {appliedFilters.map((item) => (
+          <Popover key={`${item.selector}-${item.operator}`}>
+            <PopoverTrigger asChild>
+              <Item
+                key={item.selector + item.operator + item.value}
+                onSelectFilter={onSelectFilter}
+                {...item}
+                operator={comparisonToSelectFieldOperator(
+                  item.operator,
+                  !Array.isArray(item.value) ? item.value : ''
+                )}
+              />
+            </PopoverTrigger>
+            <PopoverContent>
+              <SelectFilter
+                onApply={onEditFilter}
+                label={editionFilter.label}
+                selector={editionFilter.selector}
+                type={editionFilter.type}
+                operators={editionFilter.operators}
+                operator={editionFilter.operator}
+                setOperator={(operator) =>
+                  setEditionFilter({ ...editionFilter, operator })
+                }
+                value={editionFilter.value}
+                setValue={(value) =>
+                  setEditionFilter({ ...editionFilter, value })
+                }
+                onRemove={onRemoveFilter}
+                options={
+                  fields.find(
+                    (item) => item.selector === editionFilter.selector
+                  )?.options
+                }
+                onSearchItems={editionFilter.onSearchItems}
+              />
+            </PopoverContent>
+          </Popover>
         ))}
-      </div>
-    </div>
+      </ul>
+    </main>
   )
 }
 

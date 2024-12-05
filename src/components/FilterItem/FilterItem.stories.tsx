@@ -13,13 +13,13 @@ const Template: StoryFn<React.JSXElementConstructor<ItemProps>> = (args) => (
 )
 
 const defaultProps: ItemProps = {
+  onClick: undefined,
+  onSelectFilter: () => undefined,
   label: 'Year',
   type: 'number',
   selector: 'year',
   operator: 'equals',
-  value: '1989',
-  onEdit: () => undefined,
-  isSelected: false
+  value: '1989'
 }
 
 export const Equals = Template.bind({})
