@@ -1,6 +1,7 @@
 export type Locale = {
   add: string
   search: string
+  cancel: string
   remove: string
   apply: string
   true: string
