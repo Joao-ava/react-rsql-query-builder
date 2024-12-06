@@ -15,6 +15,8 @@ const Template: StoryFn<React.JSXElementConstructor<FilterProps>> = (args) => (
 )
 
 const defaultProps: FilterProps = {
+  isFilterSelected: false,
+  setIsFilterSelected: () => undefined,
   onEditFilter: () => undefined,
   onRemoveFilter: () => undefined,
   onSelectFilter: () => undefined,
@@ -36,6 +38,13 @@ const defaultProps: FilterProps = {
     operator: '=='
   },
   editionFilter: {
+    selector: 'name',
+    label: 'Name',
+    type: 'string',
+    value: 'John Doe',
+    operator: '=='
+  },
+  originalFilter: {
     selector: 'name',
     label: 'Name',
     type: 'string',
