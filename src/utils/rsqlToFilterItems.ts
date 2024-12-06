@@ -1,6 +1,10 @@
 import { ExpressionNode, getSelector, getValue } from '@rsql/ast'
 
 import { Field, FilterItem } from '../types.ts'
+import {
+  comparisonToSelectFieldOperator,
+  defaultOperators
+} from './operators.ts'
 
 const rsqlToFilterItems = (
   fields: Field[],
@@ -15,14 +19,19 @@ const rsqlToFilterItems = (
   const selector = getSelector(param)
   const field = fields.find((value) => value.selector === selector)
   if (!field) return []
+  const value = getValue(param)
+  const operators = field.operators || defaultOperators[field.type]
   return [
     {
       selector,
-      operator: param.operator,
-      value: getValue(param),
+      operators,
+      value,
+      operator: comparisonToSelectFieldOperator(
+        param.operator,
+        !Array.isArray(value) ? value : ''
+      ),
       label: field.label,
       type: field.type,
-      operators: field?.operators,
       options: field.options
     }
   ]

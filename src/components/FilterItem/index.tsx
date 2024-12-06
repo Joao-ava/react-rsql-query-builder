@@ -1,26 +1,25 @@
-import React, { forwardRef, HTMLProps } from 'react'
+import React, { forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FilterItem } from '../../types'
 
-export type ItemProps = FilterItem &
-  Pick<HTMLProps<HTMLElement>, 'onClick'> & {
-    onSelectFilter: (item: FilterItem) => void
-  }
+export type ItemProps = FilterItem & {
+  onSelectFilter: (item: FilterItem) => void
+}
 const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
-  ({ onSelectFilter, onClick, ...props }, ref) => {
+  ({ onSelectFilter, ...props }, ref) => {
+    const { t } = useTranslation()
     const {
       label,
       value,
-      operator,
       type,
       options,
+      operator,
       operators,
       selector,
       onSearchItems,
       ...innerProps
     } = props
-    const { t } = useTranslation()
 
     const parseValue = () => {
       if (Array.isArray(value)) {
@@ -36,7 +35,7 @@ const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
       return value.replaceAll('*', '')
     }
 
-    const handleSelect = (event: React.MouseEvent<HTMLElement>) => {
+    const handleSelect = () => {
       onSelectFilter({
         label,
         value,
@@ -47,7 +46,6 @@ const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
         selector,
         onSearchItems
       })
-      onClick?.(event)
     }
 
     return (

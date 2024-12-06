@@ -2,10 +2,7 @@ import React, { useRef } from 'react'
 import { ExpressionNode } from '@rsql/ast'
 import { useTranslation } from 'react-i18next'
 
-import {
-  comparisonToSelectFieldOperator,
-  rsqlToFilterItems
-} from '../../../utils'
+import { rsqlToFilterItems } from '../../../utils'
 import { Item } from '../../FilterItem'
 import { SelectField, SelectFieldProps } from '../../Add/SelectField'
 import { SelectFilter } from '../../Add/SelectFilter'
@@ -18,6 +15,9 @@ export type FilterProps = SelectFieldProps & {
   field: FilterItem
   onAddFilterItem: () => void
   setField: (filter: FilterItem) => void
+  originalFilter: FilterItem
+  isFilterSelected: boolean
+  setIsFilterSelected: (value: boolean) => void
   onSelectFilter: (item: FilterItem) => void
   onRemoveFilter: () => void
   editionFilter: FilterItem
@@ -32,6 +32,9 @@ const Layout: React.FC<FilterProps> = ({
   onAddFilterItem,
   setField,
   onUnselectField,
+  originalFilter,
+  isFilterSelected,
+  setIsFilterSelected,
   onSelectFilter,
   editionFilter,
   onEditFilter,
@@ -81,16 +84,23 @@ const Layout: React.FC<FilterProps> = ({
       </Popover>
       <ul className="rsql-filters">
         {appliedFilters.map((item) => (
-          <Popover key={`${item.selector}-${item.operator}`}>
+          <Popover
+            key={`${item.selector}-${item.operator}`}
+            open={
+              isFilterSelected &&
+              `${item.selector}-${item.operator}` ===
+                `${originalFilter.selector}-${originalFilter.operator}`
+            }
+            onOpenChange={setIsFilterSelected}
+          >
             <PopoverTrigger asChild>
               <Item
                 key={item.selector + item.operator + item.value}
-                onSelectFilter={onSelectFilter}
+                onSelectFilter={(filter) => {
+                  onSelectFilter(filter)
+                  setIsFilterSelected(true)
+                }}
                 {...item}
-                operator={comparisonToSelectFieldOperator(
-                  item.operator,
-                  !Array.isArray(item.value) ? item.value : ''
-                )}
               />
             </PopoverTrigger>
             <PopoverContent>
