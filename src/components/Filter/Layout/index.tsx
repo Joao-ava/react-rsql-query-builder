@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { ExpressionNode } from '@rsql/ast'
 import { useTranslation } from 'react-i18next'
+import { BiFilter } from 'react-icons/bi'
 
 import { rsqlToFilterItems } from '../../../utils'
 import { Item } from '../../FilterItem'
@@ -49,7 +50,8 @@ const Layout: React.FC<FilterProps> = ({
     <main className="rsql-main">
       <Popover>
         <PopoverTrigger className="rsql-popover-trigger">
-          {t('add')}
+          <BiFilter size={18} />
+          {t('filters')}
         </PopoverTrigger>
         <PopoverContent>
           <section className="rsql-filter-box">

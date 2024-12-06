@@ -2,6 +2,7 @@ import { Locale } from '../types.ts'
 
 const es: Locale = {
   add: 'Agregar filtro',
+  filters: 'Filtros',
   search: 'Buscar',
   cancel: 'Cancelar',
   remove: 'Eliminar',
