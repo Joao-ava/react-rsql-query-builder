@@ -165,7 +165,7 @@ export const PopoverContent = forwardRef<
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.2
+        duration: 0.14
       }
     },
     exit: {
