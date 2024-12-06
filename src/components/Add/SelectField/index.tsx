@@ -47,7 +47,7 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
         {items.map((item) => {
           const Icon = iconsByType[item.type]
           return (
-            <li className="rsql-field">
+            <li key={item.selector} className="rsql-field">
               <button
                 className="rsql-field-btn"
                 onClick={() => onSelectField(item.selector)}

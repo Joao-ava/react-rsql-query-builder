@@ -23,7 +23,7 @@ const initialFieldState: FilterItem = {
   selector: '',
   type: 'string',
   value: '',
-  operator: '=='
+  operator: 'equals'
 }
 const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
   const [field, setField] = useState<FilterItem>(initialFieldState)
@@ -31,6 +31,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
     useState<FilterItem>(initialFieldState)
   const [editionFilter, setEditionFilter] =
     useState<FilterItem>(initialFieldState)
+  const [isFilterSelected, setIsFilterSelected] = useState(false)
 
   const makeField = (item: FilterItem): FilterItem => ({
     ...item,
@@ -41,10 +42,16 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
   })
 
   const handleSelectField = (selector: string) => {
-    const field = fields.find((item) => item.selector === selector)
-    if (!field) return
-    const [operator] = field.operators || defaultOperators[field.type]
-    setField({ ...field, selector, operator, value: '' })
+    const selected = fields.find((item) => item.selector === selector)
+    if (!selected) return
+    const operators = selected.operators || defaultOperators[selected.type]
+    setField({
+      ...selected,
+      selector,
+      operators,
+      operator: operators[0],
+      value: ''
+    })
   }
 
   const handleUnselectField = () => {
@@ -100,6 +107,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
     )
     setOriginalFilter(initialFieldState)
     setEditionFilter(initialFieldState)
+    setIsFilterSelected(false)
   }
 
   return (
@@ -111,6 +119,9 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
       field={field}
       setField={setField}
       onAddFilterItem={onAddFilterItem}
+      originalFilter={originalFilter}
+      isFilterSelected={isFilterSelected}
+      setIsFilterSelected={setIsFilterSelected}
       onSelectFilter={handleSelectFilter}
       onRemoveFilter={handleRemoveFilter}
       editionFilter={editionFilter}
