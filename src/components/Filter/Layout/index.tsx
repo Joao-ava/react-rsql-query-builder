@@ -8,6 +8,7 @@ import { SelectField, SelectFieldProps } from '../../Add/SelectField'
 import { SelectFilter } from '../../Add/SelectFilter'
 import { FilterItem } from '../../../types'
 import { Popover, PopoverContent, PopoverTrigger } from '../../Popover'
+import { BiFilter } from 'react-icons/bi'
 
 export type FilterProps = SelectFieldProps & {
   onUnselectField: () => void
@@ -49,7 +50,8 @@ const Layout: React.FC<FilterProps> = ({
     <main className="rsql-main">
       <Popover>
         <PopoverTrigger className="rsql-popover-trigger">
-          {t('add')}
+          <BiFilter size={18} />
+          {t('filters')}
         </PopoverTrigger>
         <PopoverContent>
           <section className="rsql-filter-box">
