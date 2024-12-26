@@ -80,15 +80,7 @@ const Filter: React.FC<FilterProps> = ({ fields, search, setSearch }) => {
   }
 
   const handleRemoveFilter = () => {
-    setSearch(
-      rsqlRemoveFilter(
-        {
-          ...editionFilter,
-          operator: selectFieldToComparisonOperator(editionFilter.operator)
-        },
-        search
-      )
-    )
+    setSearch(rsqlRemoveFilter(makeField(editionFilter), search))
     setOriginalFilter(initialFieldState)
     setEditionFilter(initialFieldState)
   }
