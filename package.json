@@ -1,6 +1,6 @@
 {
   "name": "react-rsql-query-builder",
-  "version": "2.4.5-dev",
+  "version": "2.4.6-dev",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
