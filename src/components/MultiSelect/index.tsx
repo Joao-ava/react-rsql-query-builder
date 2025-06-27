@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { CommonSelectProps, Option } from '../../types'
+import type { CommonSelectProps, Option } from '../../types'
 
 export type MultiSelectProps<T = string> = CommonSelectProps & {
   values: Option[]

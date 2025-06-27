@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
 import path from 'path'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 
@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      insertTypesEntry: true
+      tsconfigPath: './tsconfig.app.json',
+      exclude: ['src/components/**/*.stories.*']
     })
   ],
   build: {

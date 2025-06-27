@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import builder from '@rsql/builder'
-import { ExpressionNode } from '@rsql/ast'
+import type { ExpressionNode } from '@rsql/ast'
 
-import { SelectFieldProps } from '../Add/SelectField'
-import { FilterItem } from '../../types'
+import type { SelectFieldProps } from '../Add/SelectField'
+import type { FilterItem } from '../../types'
 import {
   defaultOperators,
   rsqlRemoveFilter,

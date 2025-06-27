@@ -1,16 +1,20 @@
-import { forwardRef, HTMLProps } from 'react'
+import { forwardRef, type HTMLProps } from 'react'
+import { joinClasses } from '../../utils'
 
 export type ButtonProps = HTMLProps<HTMLButtonElement>
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, ...props }, ref) => (
     <button
       ref={ref}
       {...props}
       type="button"
-      className={`rsql-btn ${props.className}`}
+      className={joinClasses('rsql-btn', props.className)}
     >
       {children}
     </button>
   )
 )
+Button.displayName = 'Button'
+
+export { Button }

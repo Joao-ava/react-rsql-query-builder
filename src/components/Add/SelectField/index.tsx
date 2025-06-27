@@ -1,5 +1,5 @@
 import React, { forwardRef, useState } from 'react'
-import { IconType } from 'react-icons'
+import type { IconType } from 'react-icons'
 import { useTranslation } from 'react-i18next'
 import {
   BiCalendarAlt,
@@ -10,7 +10,7 @@ import {
   BiToggleRight
 } from 'react-icons/bi'
 
-import { Field, FieldType } from '../../../types'
+import type { Field, FieldType } from '../../../types'
 import { useComponentsProvider } from '../../../providers/ComponentsProvider.tsx'
 
 export type SelectFieldProps = {
@@ -42,6 +42,7 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
         onChange={(e) => setSearch(e.target.value)}
         name="rsql-field-search"
         placeholder={t('search') as string}
+        data-testid="field-search"
       />
       <ul className="rsql-fields-list">
         {items.map((item) => {
@@ -51,6 +52,7 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
               <button
                 className="rsql-field-btn"
                 onClick={() => onSelectField(item.selector)}
+                data-testid="field-submit"
               >
                 <Icon size={16} />
                 {item.label}

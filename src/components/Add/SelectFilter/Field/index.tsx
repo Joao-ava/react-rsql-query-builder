@@ -1,8 +1,8 @@
-import React, { HTMLInputTypeAttribute } from 'react'
+import React, { type HTMLInputTypeAttribute } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BiX } from 'react-icons/bi'
 
-import { FieldType, FilterItem } from '../../../../types'
+import type { FieldType, FilterItem } from '../../../../types'
 import { useComponentsProvider } from '../../../../providers/ComponentsProvider'
 
 const inputType: Record<FieldType, HTMLInputTypeAttribute> = {
@@ -90,6 +90,7 @@ const ParsedField: React.FC<ParsedFieldProps> = ({
       value={value}
       type={inputType[type]}
       onChange={(e) => setValue(e.target.value)}
+      data-testid="input-filter-setter"
     />
   )
 }

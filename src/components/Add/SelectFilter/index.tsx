@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
 
-import { FilterItem, Option } from '../../../types'
+import type { FilterItem, Option } from '../../../types'
 import { defaultOperators } from '../../../utils'
 import { useComponentsProvider } from '../../../providers/ComponentsProvider'
 import { ParsedField } from './Field'
@@ -59,7 +59,9 @@ const SelectFilter: React.FC<SelectFilterProps> = (params) => {
             {t('cancel')}
           </Button>
         )}
-        <Button onClick={onApply}>{t('apply')}</Button>
+        <Button onClick={onApply} data-testid="filter-submit">
+          {t('apply')}
+        </Button>
       </div>
     </div>
   )

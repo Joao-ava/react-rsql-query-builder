@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { CommonSelectProps, Option } from '../../types'
+import type { CommonSelectProps, Option } from '../../types'
 
 export type SingleSelectProps<T = string> = CommonSelectProps & {
   value: Option

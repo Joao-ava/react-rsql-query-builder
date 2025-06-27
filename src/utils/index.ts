@@ -1,3 +1,4 @@
+export * from './className'
 export * from './isSameRsqlFilter'
 export * from './operators'
 export * from './rsqlRemoveFilter'

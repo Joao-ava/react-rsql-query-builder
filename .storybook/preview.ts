@@ -1,8 +1,8 @@
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/react-vite'
+import { INITIAL_VIEWPORTS } from 'storybook/viewport'
 
 import '../src/styles.css'
 import { WithI18n } from '../src/storybook/withI18n'
-import { i18next } from '../src/i18n'
 import { ComponentsWrapper } from '../src/storybook/ComponentsWrapper'
 
 const preview: Preview = {
@@ -21,11 +21,11 @@ const preview: Preview = {
       }
     }
   },
-  decorators: [
-    WithI18n,
-    ComponentsWrapper
-  ],
+  decorators: [WithI18n, ComponentsWrapper],
   parameters: {
+    viewport: {
+      options: INITIAL_VIEWPORTS
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
@@ -33,7 +33,8 @@ const preview: Preview = {
         date: /Date$/
       }
     }
-  }
+  },
+  tags: ['autodocs']
 }
 
 export default preview

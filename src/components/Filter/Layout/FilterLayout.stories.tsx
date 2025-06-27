@@ -1,9 +1,8 @@
 import React from 'react'
-import { Meta, StoryFn } from '@storybook/react'
-
+import type { Meta, StoryFn } from '@storybook/react-vite'
 import builder from '@rsql/builder'
 
-import { FilterProps, Layout } from './index.tsx'
+import { type FilterProps, Layout } from './index.tsx'
 
 export default {
   title: 'components/Filter/Layout',

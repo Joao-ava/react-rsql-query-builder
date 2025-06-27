@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { FilterItem } from '../../types'
+import type { FilterItem } from '../../types'
 
 export type ItemProps = FilterItem & {
   onSelectFilter: (item: FilterItem) => void
@@ -55,6 +55,7 @@ const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
         role="button"
         className="rsql-filter"
         onClick={handleSelect}
+        data-testid="filter-applied"
       >
         <strong>{label}</strong>
         <p>{t(`operators.${operator}`)}</p>
@@ -63,5 +64,6 @@ const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
     )
   }
 )
+Item.displayName = 'FilterItem'
 
 export { Item }

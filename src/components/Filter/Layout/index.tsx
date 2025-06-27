@@ -1,13 +1,13 @@
-import React, { useRef } from 'react'
-import { ExpressionNode } from '@rsql/ast'
+import React, { useRef, useState } from 'react'
+import type { ExpressionNode } from '@rsql/ast'
 import { useTranslation } from 'react-i18next'
 import { BiFilter } from 'react-icons/bi'
 
 import { rsqlToFilterItems } from '../../../utils'
 import { Item } from '../../FilterItem'
-import { SelectField, SelectFieldProps } from '../../Add/SelectField'
+import { SelectField, type SelectFieldProps } from '../../Add/SelectField'
 import { SelectFilter } from '../../Add/SelectFilter'
-import { FilterItem } from '../../../types'
+import type { FilterItem } from '../../../types'
 import { Popover, PopoverContent, PopoverTrigger } from '../../Popover'
 
 export type FilterProps = SelectFieldProps & {
@@ -43,18 +43,30 @@ const Layout: React.FC<FilterProps> = ({
   onRemoveFilter
 }) => {
   const { t } = useTranslation()
+  const [isOpen, setIsOpen] = useState(false)
   const appliedFilters = rsqlToFilterItems(fields, search)
   const selectFieldRef = useRef<HTMLDivElement>(null)
 
+  const onOpenChange = (open: boolean): void => {
+    if (!open && field.selector) {
+      onUnselectField()
+    }
+    setIsOpen(open)
+  }
+
   return (
     <main className="rsql-main">
-      <Popover>
-        <PopoverTrigger className="rsql-popover-trigger">
+      <Popover open={isOpen} onOpenChange={onOpenChange}>
+        <PopoverTrigger
+          className="rsql-popover-trigger"
+          onClick={() => setIsOpen(true)}
+          data-testid="select-filter-trigger"
+        >
           <BiFilter size={18} />
           {t('filters')}
         </PopoverTrigger>
         <PopoverContent>
-          <section className="rsql-filter-box">
+          <section className="rsql-filter-box" data-testid="select-filter-box">
             {!field.selector && (
               <SelectField
                 fields={fields}
