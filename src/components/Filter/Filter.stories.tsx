@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Meta, StoryFn } from '@storybook/react'
-import { ExpressionNode } from '@rsql/ast'
+import type { Meta, StoryFn } from '@storybook/react'
+import type { ExpressionNode } from '@rsql/ast'
 
-import { Filter, FilterProps } from './index'
+import { Filter, type FilterProps } from './index'
 
 export default {
   title: 'components/Filter',

@@ -1,23 +1,23 @@
 import React, { createContext, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button as DefaultButton, ButtonProps } from '../components/Button'
-import { Input as DefaultInput, InputProps } from '../components/Input'
+import { Button as DefaultButton, type ButtonProps } from '../components/Button'
+import { Input as DefaultInput, type InputProps } from '../components/Input'
 import {
   Checkbox as DefaultCheckbox,
-  CheckboxProps
+  type CheckboxProps
 } from '../components/Checkbox'
 import {
   SingleSelect as DefaultSingleSelect,
-  SingleSelectProps
+  type SingleSelectProps
 } from '../components/SingleSelect'
 import {
   Datepicker as DefaultDatepicker,
-  DatepickerProps
+  type DatepickerProps
 } from '../components/Datepicker'
 import {
   MultiSelect as DefaultMultiSelect,
-  MultiSelectProps
+  type MultiSelectProps
 } from '../components/MultiSelect'
 
 type ComponentsContextType = {

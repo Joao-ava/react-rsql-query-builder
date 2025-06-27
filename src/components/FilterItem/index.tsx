@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { FilterItem } from '../../types'
+import type { FilterItem } from '../../types'
 
 export type ItemProps = FilterItem & {
   onSelectFilter: (item: FilterItem) => void

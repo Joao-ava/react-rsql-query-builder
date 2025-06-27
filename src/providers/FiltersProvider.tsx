@@ -1,11 +1,11 @@
 import React from 'react'
-import { I18nextProvider, I18nextProviderProps } from 'react-i18next'
+import { I18nextProvider, type I18nextProviderProps } from 'react-i18next'
 
 import { i18next } from '../i18n'
-import { Filter, FilterProps } from '../components/Filter'
+import { Filter, type FilterProps } from '../components/Filter'
 import {
   ComponentsProvider,
-  ComponentsProviderProps
+  type ComponentsProviderProps
 } from './ComponentsProvider'
 
 type FiltersProviderProps = Partial<I18nextProviderProps> &

@@ -1,7 +1,7 @@
-import { ExpressionNode } from '@rsql/ast'
+import type { ExpressionNode } from '@rsql/ast'
 import builder from '@rsql/builder'
 
-import { FilterItem } from '../types.ts'
+import type { FilterItem } from '../types.ts'
 import { isSameRsqlFilter } from './isSameRsqlFilter.ts'
 
 export const rsqlReplaceFilter = (

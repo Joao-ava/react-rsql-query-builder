@@ -1,5 +1,5 @@
-import { FieldType } from '../types'
-import { ComparisonOperator } from '@rsql/ast'
+import type { FieldType } from '../types'
+import type { ComparisonOperator } from '@rsql/ast'
 
 export const selectFieldOperators = [
   'equals',

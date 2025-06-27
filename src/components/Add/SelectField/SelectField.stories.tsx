@@ -1,7 +1,7 @@
 import React from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
-import { SelectField, SelectFieldProps } from '.'
+import { SelectField, type SelectFieldProps } from '.'
 
 export default {
   title: 'components/Add/SelectField',

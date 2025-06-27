@@ -1,4 +1,4 @@
-import { Locale } from '../types.ts'
+import type { Locale } from '../types.ts'
 
 const es: Locale = {
   add: 'Agregar filtro',

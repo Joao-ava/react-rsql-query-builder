@@ -1,4 +1,4 @@
-import { SelectFieldOperator } from './utils'
+import type { SelectFieldOperator } from './utils'
 
 export type { SingleSelectProps } from './components/SingleSelect'
 export type { MultiSelectProps } from './components/MultiSelect'

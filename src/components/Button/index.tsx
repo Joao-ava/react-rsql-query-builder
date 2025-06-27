@@ -1,4 +1,4 @@
-import { forwardRef, HTMLProps } from 'react'
+import { forwardRef, type HTMLProps } from 'react'
 
 export type ButtonProps = HTMLProps<HTMLButtonElement>
 

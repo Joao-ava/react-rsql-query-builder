@@ -1,6 +1,6 @@
-import { ExpressionNode, getSelector, getValue } from '@rsql/ast'
+import { type ExpressionNode, getSelector, getValue } from '@rsql/ast'
 
-import { Field, FilterItem } from '../types.ts'
+import type { Field, FilterItem } from '../types.ts'
 import {
   comparisonToSelectFieldOperator,
   defaultOperators

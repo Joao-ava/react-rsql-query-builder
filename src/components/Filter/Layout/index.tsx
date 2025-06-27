@@ -1,13 +1,13 @@
 import React, { useRef } from 'react'
-import { ExpressionNode } from '@rsql/ast'
+import type { ExpressionNode } from '@rsql/ast'
 import { useTranslation } from 'react-i18next'
 import { BiFilter } from 'react-icons/bi'
 
 import { rsqlToFilterItems } from '../../../utils'
 import { Item } from '../../FilterItem'
-import { SelectField, SelectFieldProps } from '../../Add/SelectField'
+import { SelectField, type SelectFieldProps } from '../../Add/SelectField'
 import { SelectFilter } from '../../Add/SelectFilter'
-import { FilterItem } from '../../../types'
+import type { FilterItem } from '../../../types'
 import { Popover, PopoverContent, PopoverTrigger } from '../../Popover'
 
 export type FilterProps = SelectFieldProps & {

@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
 
-import { FilterItem, Option } from '../../../types'
+import type { FilterItem, Option } from '../../../types'
 import { defaultOperators } from '../../../utils'
 import { useComponentsProvider } from '../../../providers/ComponentsProvider'
 import { ParsedField } from './Field'

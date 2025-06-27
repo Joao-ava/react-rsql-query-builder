@@ -2,9 +2,9 @@ import React, {
   cloneElement,
   createContext,
   forwardRef,
-  HTMLProps,
+  type HTMLProps,
   isValidElement,
-  ReactNode,
+  type ReactNode,
   useContext,
   useState
 } from 'react'
@@ -14,11 +14,11 @@ import {
   FloatingFocusManager,
   FloatingPortal,
   offset,
-  Placement,
+  type Placement,
   useClick,
   useDismiss,
   useFloating,
-  UseFloatingReturn,
+  type UseFloatingReturn,
   useInteractions,
   useMergeRefs,
   useRole
@@ -26,7 +26,7 @@ import {
 import { AnimatePresence, motion } from 'motion/react'
 
 import { useComponentsProvider } from '../../providers/ComponentsProvider'
-import { ButtonProps } from '../Button'
+import type { ButtonProps } from '../Button'
 
 type PopoverOptions = {
   initialOpen?: boolean

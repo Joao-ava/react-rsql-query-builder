@@ -1,6 +1,6 @@
-import { ComparisonNode, ExpressionNode } from '@rsql/ast'
+import type { ComparisonNode, ExpressionNode } from '@rsql/ast'
 
-import { FilterItem } from '../types.ts'
+import type { FilterItem } from '../types.ts'
 import { isSameRsqlFilter } from './isSameRsqlFilter.ts'
 import builder from '@rsql/builder'
 

@@ -2,7 +2,6 @@ import type { Preview } from '@storybook/react'
 
 import '../src/styles.css'
 import { WithI18n } from '../src/storybook/withI18n'
-import { i18next } from '../src/i18n'
 import { ComponentsWrapper } from '../src/storybook/ComponentsWrapper'
 
 const preview: Preview = {
@@ -21,10 +20,7 @@ const preview: Preview = {
       }
     }
   },
-  decorators: [
-    WithI18n,
-    ComponentsWrapper
-  ],
+  decorators: [WithI18n, ComponentsWrapper],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {

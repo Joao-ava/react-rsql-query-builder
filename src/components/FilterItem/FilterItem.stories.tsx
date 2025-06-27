@@ -1,7 +1,7 @@
 import React from 'react'
-import { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryFn } from '@storybook/react'
 
-import { Item, ItemProps } from '.'
+import { Item, type ItemProps } from '.'
 
 export default {
   title: 'components/FilterItem',
