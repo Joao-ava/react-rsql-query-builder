@@ -21,22 +21,20 @@ const FiltersProvider: React.FC<FiltersProviderProps> = ({
   MultiSelect,
   DatePicker,
   ...props
-}) => {
-  return (
-    <I18nextProvider i18n={i18n}>
-      <ComponentsProvider
-        Button={Button}
-        Input={Input}
-        Checkbox={Checkbox}
-        SingleSelect={SingleSelect}
-        MultiSelect={MultiSelect}
-        DatePicker={DatePicker}
-        language={language}
-      >
-        <Filter {...props} />
-      </ComponentsProvider>
-    </I18nextProvider>
-  )
-}
+}) => (
+  <I18nextProvider i18n={i18n}>
+    <ComponentsProvider
+      Button={Button}
+      Input={Input}
+      Checkbox={Checkbox}
+      SingleSelect={SingleSelect}
+      MultiSelect={MultiSelect}
+      DatePicker={DatePicker}
+      language={language}
+    >
+      <Filter {...props} />
+    </ComponentsProvider>
+  </I18nextProvider>
+)
 
 export { FiltersProvider }

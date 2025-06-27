@@ -1,10 +1,7 @@
 import { type ExpressionNode, getSelector, getValue } from '@rsql/ast'
 
-import type { Field, FilterItem } from '../types.ts'
-import {
-  comparisonToSelectFieldOperator,
-  defaultOperators
-} from './operators.ts'
+import type { Field, FilterItem } from '../types'
+import { comparisonToSelectFieldOperator, defaultOperators } from './operators'
 
 const rsqlToFilterItems = (
   fields: Field[],

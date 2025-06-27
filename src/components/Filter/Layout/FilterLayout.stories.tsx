@@ -1,6 +1,5 @@
 import React from 'react'
 import type { Meta, StoryFn } from '@storybook/react-vite'
-
 import builder from '@rsql/builder'
 
 import { type FilterProps, Layout } from './index.tsx'

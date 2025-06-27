@@ -1,5 +1,5 @@
-import type { FieldType } from '../types'
 import type { ComparisonOperator } from '@rsql/ast'
+import type { FieldType } from '../types'
 
 export const selectFieldOperators = [
   'equals',
@@ -29,9 +29,8 @@ const selectFieldRelationComparison: Record<
   in: '=in=',
   out: '=out='
 }
-export const selectFieldToComparisonOperator = (operator: string): string => {
-  return selectFieldRelationComparison[operator as SelectFieldOperator]
-}
+export const selectFieldToComparisonOperator = (operator: string): string =>
+  selectFieldRelationComparison[operator as SelectFieldOperator]
 export const searchableOperators: ComparisonOperator[] = ['==', '!=']
 export const searchableSelectField = ['contains', 'notContains']
 export const comparisonToSelectFieldOperator = (

@@ -63,5 +63,6 @@ const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
     )
   }
 )
+Item.displayName = 'FilterItem'
 
 export { Item }

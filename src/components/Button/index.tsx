@@ -2,7 +2,7 @@ import { forwardRef, type HTMLProps } from 'react'
 
 export type ButtonProps = HTMLProps<HTMLButtonElement>
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, ...props }, ref) => (
     <button
       ref={ref}
@@ -14,3 +14,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     </button>
   )
 )
+Button.displayName = 'Button'
+
+export { Button }

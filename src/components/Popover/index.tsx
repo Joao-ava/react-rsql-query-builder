@@ -118,12 +118,8 @@ export const PopoverTrigger = forwardRef<
 >(({ children, asChild = false, ...props }, propRef) => {
   const context = usePopoverContext()
   const { Button } = useComponentsProvider()
-  const childrenRef = (children as any).ref
-  const ref = useMergeRefs([
-    context.data.refs.setReference,
-    propRef,
-    childrenRef
-  ])
+  // const childrenRef = (children as any).ref
+  const ref = useMergeRefs([context.data.refs.setReference, propRef])
   if (asChild && isValidElement(children)) {
     return cloneElement(
       children,
@@ -147,6 +143,7 @@ export const PopoverTrigger = forwardRef<
     </Button>
   )
 })
+PopoverTrigger.displayName = 'PopoverTrigger'
 
 export const PopoverContent = forwardRef<
   HTMLDivElement,
@@ -204,6 +201,7 @@ export const PopoverContent = forwardRef<
     </AnimatePresence>
   )
 })
+PopoverContent.displayName = 'PopoverContent'
 
 export const PopoverClose = forwardRef<
   HTMLButtonElement,
@@ -211,29 +209,34 @@ export const PopoverClose = forwardRef<
 >(({ asChild, ...props }, propRef) => {
   const { Button } = useComponentsProvider()
   const { onOpenChange } = usePopoverContext()
-  const childrenRef = (props.children as any).ref
-  const ref = useMergeRefs([propRef, childrenRef])
+  // const childrenRef = (props.children as any).ref
+  // const ref = useMergeRefs([propRef, childrenRef])
   if (asChild && isValidElement(props.children)) {
     return cloneElement(props.children, {
-      ref,
+      propRef,
       ...props,
       ...props.children.props,
       onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         props.onClick?.(event)
-        onOpenChange && onOpenChange(false)
+        if (onOpenChange) {
+          onOpenChange(false)
+        }
       }
     })
   }
 
   return (
     <Button
-      ref={ref}
+      ref={propRef}
       {...props}
       type="button"
       onClick={(event) => {
         props.onClick?.(event)
-        onOpenChange && onOpenChange(false)
+        if (onOpenChange) {
+          onOpenChange(false)
+        }
       }}
     />
   )
 })
+PopoverClose.displayName = 'PopoverClose'
