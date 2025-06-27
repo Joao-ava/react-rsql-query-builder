@@ -118,7 +118,6 @@ export const PopoverTrigger = forwardRef<
 >(({ children, asChild = false, ...props }, propRef) => {
   const context = usePopoverContext()
   const { Button } = useComponentsProvider()
-  // const childrenRef = (children as any).ref
   const ref = useMergeRefs([context.data.refs.setReference, propRef])
   if (asChild && isValidElement(children)) {
     return cloneElement(
@@ -126,9 +125,8 @@ export const PopoverTrigger = forwardRef<
       context.interactions.getReferenceProps({
         ref,
         ...props,
-        ...children.props,
         'data-state': context.open ? 'open' : 'closed'
-      })
+      } as HTMLProps<Element>)
     )
   }
 
@@ -209,20 +207,17 @@ export const PopoverClose = forwardRef<
 >(({ asChild, ...props }, propRef) => {
   const { Button } = useComponentsProvider()
   const { onOpenChange } = usePopoverContext()
-  // const childrenRef = (props.children as any).ref
-  // const ref = useMergeRefs([propRef, childrenRef])
   if (asChild && isValidElement(props.children)) {
     return cloneElement(props.children, {
       propRef,
       ...props,
-      ...props.children.props,
       onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         props.onClick?.(event)
         if (onOpenChange) {
           onOpenChange(false)
         }
       }
-    })
+    } as Partial<unknown> & React.Attributes)
   }
 
   return (
