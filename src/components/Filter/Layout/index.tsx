@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import type { ExpressionNode } from '@rsql/ast'
 import { useTranslation } from 'react-i18next'
 import { BiFilter } from 'react-icons/bi'
@@ -43,13 +43,24 @@ const Layout: React.FC<FilterProps> = ({
   onRemoveFilter
 }) => {
   const { t } = useTranslation()
+  const [isOpen, setIsOpen] = useState(false)
   const appliedFilters = rsqlToFilterItems(fields, search)
   const selectFieldRef = useRef<HTMLDivElement>(null)
 
+  const onOpenChange = (open: boolean): void => {
+    if (!open && field.selector) {
+      onUnselectField()
+    }
+    setIsOpen(open)
+  }
+
   return (
     <main className="rsql-main">
-      <Popover>
-        <PopoverTrigger className="rsql-popover-trigger">
+      <Popover open={isOpen} onOpenChange={onOpenChange}>
+        <PopoverTrigger
+          className="rsql-popover-trigger"
+          onClick={() => setIsOpen(true)}
+        >
           <BiFilter size={18} />
           {t('filters')}
         </PopoverTrigger>
