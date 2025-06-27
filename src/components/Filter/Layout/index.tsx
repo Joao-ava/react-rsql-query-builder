@@ -60,12 +60,13 @@ const Layout: React.FC<FilterProps> = ({
         <PopoverTrigger
           className="rsql-popover-trigger"
           onClick={() => setIsOpen(true)}
+          data-testid="select-filter-trigger"
         >
           <BiFilter size={18} />
           {t('filters')}
         </PopoverTrigger>
         <PopoverContent>
-          <section className="rsql-filter-box">
+          <section className="rsql-filter-box" data-testid="select-filter-box">
             {!field.selector && (
               <SelectField
                 fields={fields}

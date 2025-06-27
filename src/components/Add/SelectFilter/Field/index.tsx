@@ -90,6 +90,7 @@ const ParsedField: React.FC<ParsedFieldProps> = ({
       value={value}
       type={inputType[type]}
       onChange={(e) => setValue(e.target.value)}
+      data-testid="input-filter-setter"
     />
   )
 }

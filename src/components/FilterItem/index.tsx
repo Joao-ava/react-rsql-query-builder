@@ -55,6 +55,7 @@ const Item: React.FC<ItemProps> = forwardRef<HTMLLIElement, ItemProps>(
         role="button"
         className="rsql-filter"
         onClick={handleSelect}
+        data-testid="filter-applied"
       >
         <strong>{label}</strong>
         <p>{t(`operators.${operator}`)}</p>

@@ -59,7 +59,9 @@ const SelectFilter: React.FC<SelectFilterProps> = (params) => {
             {t('cancel')}
           </Button>
         )}
-        <Button onClick={onApply}>{t('apply')}</Button>
+        <Button onClick={onApply} data-testid="filter-submit">
+          {t('apply')}
+        </Button>
       </div>
     </div>
   )

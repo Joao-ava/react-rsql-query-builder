@@ -42,6 +42,7 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
         onChange={(e) => setSearch(e.target.value)}
         name="rsql-field-search"
         placeholder={t('search') as string}
+        data-testid="field-search"
       />
       <ul className="rsql-fields-list">
         {items.map((item) => {
@@ -51,6 +52,7 @@ const SelectFieldFunction: React.ForwardRefRenderFunction<
               <button
                 className="rsql-field-btn"
                 onClick={() => onSelectField(item.selector)}
+                data-testid="field-submit"
               >
                 <Icon size={16} />
                 {item.label}
