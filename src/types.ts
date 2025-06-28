@@ -2,6 +2,8 @@ import type { SelectFieldOperator } from './utils'
 
 export type { SingleSelectProps } from './components/SingleSelect'
 export type { MultiSelectProps } from './components/MultiSelect'
+export type { CheckboxProps } from './components/Checkbox'
+export type { DatepickerProps } from './components/Datepicker'
 export type SingleType = 'string' | 'number' | 'date' | 'boolean'
 export type MultiType = 'array'
 export type FieldType = SingleType | MultiType

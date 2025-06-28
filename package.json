@@ -1,10 +1,21 @@
 {
   "name": "react-rsql-query-builder",
   "version": "3.4.6-dev",
+  "description": "Customizable RSQL front-end lib for React",
+  "author": "João Alex <joao.alex.apps@gmail.com>",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style": "./dist/react-rsql-query-builder.css",
+    "./styles.css": "./dist/react-rsql-query-builder.css"
+  },
   "license": "MIT",
   "keywords": [
     "rsql",
@@ -12,7 +23,13 @@
     "react",
     "filter"
   ],
-  "repository": "git@github.com:Joao-ava/react-rsql-query-builder.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Joao-ava/react-rsql-query-builder"
+  },
+  "bugs": {
+    "url": "https://github.com/Joao-ava/react-rsql-query-builder/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
