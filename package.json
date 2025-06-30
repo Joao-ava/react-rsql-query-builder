@@ -1,6 +1,6 @@
 {
   "name": "react-rsql-query-builder",
-  "version": "3.4.6-dev",
+  "version": "3.4.7-dev",
   "description": "Customizable RSQL front-end lib for React",
   "author": "João Alex <joao.alex.apps@gmail.com>",
   "type": "module",
@@ -9,9 +9,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.umd.js"
     },
     "./style": "./dist/react-rsql-query-builder.css",
     "./styles.css": "./dist/react-rsql-query-builder.css"
