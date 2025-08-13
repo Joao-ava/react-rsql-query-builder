@@ -2,8 +2,8 @@ import type { Preview } from '@storybook/react-vite'
 import { INITIAL_VIEWPORTS } from 'storybook/viewport'
 
 import '../src/styles.css'
-import { WithI18n } from '../src/storybook/withI18n'
-import { ComponentsWrapper } from '../src/storybook/ComponentsWrapper'
+
+import { WithI18n } from './withI18n'
 
 const preview: Preview = {
   globalTypes: {
@@ -21,7 +21,9 @@ const preview: Preview = {
       }
     }
   },
-  decorators: [WithI18n, ComponentsWrapper],
+  initialGlobals: {
+    locale: 'ptBr'
+  },
   parameters: {
     viewport: {
       options: INITIAL_VIEWPORTS
@@ -34,6 +36,7 @@ const preview: Preview = {
       }
     }
   },
+  decorators: [WithI18n],
   tags: ['autodocs']
 }
 
