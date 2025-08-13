@@ -80,7 +80,11 @@ const FilterItemForm: React.FC = () => {
           setValue={(operator) => onChange((prev) => ({ ...prev, operator }))}
         />
         {isEdition && (
-          <button className="rsql-btn-icon" onClick={onRemoveFilter}>
+          <button
+            className="rsql-btn-icon"
+            onClick={onRemoveFilter}
+            data-testid="delete-filter-button"
+          >
             <BiTrash />
           </button>
         )}

@@ -7,7 +7,10 @@ import Filter, { type FilterRootProps } from '.'
 
 const meta = {
   title: 'components/Filter',
-  component: Filter
+  component: Filter,
+  parameters: {
+    layout: 'padded'
+  }
 } as Meta<typeof Filter>
 export default meta
 
@@ -43,7 +46,7 @@ export const Default: Story = {
     return <Filter {...args} search={search} setSearch={setSearch} />
   },
   play: async ({ canvas, userEvent }) => {
-    // open filter selection
+    // test filter menu opening
     await userEvent.click(canvas.getByTestId('select-filter-trigger'))
     await expect(canvas.getByTestId('select-filter-trigger')).toHaveAttribute(
       'data-state',
@@ -51,19 +54,28 @@ export const Default: Story = {
     )
     await expect(screen.getByTestId('select-filter-box')).toBeInTheDocument()
 
-    // search for the name field
+    // test filter addition
     await userEvent.type(screen.getByTestId('field-search'), 'name')
-
-    // select a field to filter
     await userEvent.click(screen.getAllByTestId('field-submit')[0])
-
-    // set a value to filter
     await userEvent.type(screen.getByTestId('input-filter-setter'), 'Teste')
-
-    // apply filter
     await userEvent.click(screen.getByTestId('filter-submit'))
+    await userEvent.click(screen.getByTestId('filter-main-section'))
+    await expect(screen.getAllByTestId('filter-applied')).toHaveLength(1)
 
-    // verify if a filter is displaying
-    await expect(canvas.getAllByTestId('filter-applied')).toHaveLength(1)
+    // test filter edition
+    const filterToEdit = screen.getAllByTestId('filter-applied')[0]
+    await userEvent.click(filterToEdit)
+    await userEvent.type(screen.getByTestId('input-filter-setter'), ' 2')
+    await userEvent.click(screen.getByTestId('filter-submit'))
+    const editedFilter = screen.getAllByTestId('filter-applied')[0]
+    await expect(editedFilter.innerText).toContain('Teste 2')
+
+    // test filter removal
+    const filterToDelete = screen.getAllByTestId('filter-applied')[0]
+    await userEvent.click(filterToDelete)
+    await userEvent.click(screen.getByTestId('delete-filter-button'))
+    await expect(
+      screen.getByTestId('applied-filters-list')
+    ).toBeEmptyDOMElement()
   }
 }

@@ -292,6 +292,7 @@ export const AppliedFiltersList = forwardRef<
       className={joinClasses('rsql-filters', className)}
       {...props}
       ref={forwardedRef}
+      data-testid="applied-filters-list"
     >
       {appliedFilters.map((item, index) => (
         <AppliedFilterItem key={index} item={item} />
@@ -391,7 +392,7 @@ export type FilterProps = Pick<FilterContextType, 'search' | 'fields'> &
   }
 const Filter: React.FC<FilterProps> = (props) => (
   <FilterRoot {...props}>
-    <section className="rsql-main">
+    <section className="rsql-main" data-testid="filter-main-section">
       <FilterTriggerContent>
         <FilterTrigger />
       </FilterTriggerContent>
