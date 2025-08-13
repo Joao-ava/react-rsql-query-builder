@@ -1,7 +1,7 @@
 import type { ComparisonNode, ExpressionNode } from '@rsql/ast'
 import builder from '@rsql/builder'
 
-import type { FilterItem } from '../types.ts'
+import type { FilterItem } from '../types'
 import { isSameRsqlFilter } from './isSameRsqlFilter'
 
 export const rsqlRemoveFilter = (

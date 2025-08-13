@@ -1,5 +1,6 @@
 import React, { type PropsWithChildren } from 'react'
-import { FilterContext, type FilterContextType } from './hook.ts'
+
+import { FilterContext, type FilterContextType } from './hook'
 
 const FilterProvider: React.FC<PropsWithChildren<FilterContextType>> = ({
   children,
