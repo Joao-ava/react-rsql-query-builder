@@ -55,8 +55,8 @@ const Filter: React.FC = () => {
 - **language**: Language is display component is optional (type `string` default `en`).
 - **i18n**: i18n object for translation is optional.
 - **Button**: Button component following `ButtonHTMLAttributes<HTMLButtonElement>` is optional, you can use your component button of your library.
-- **Index**: Index component following `InputHTMLAttributes<HTMLInputElement>` is optional, you can use your component input of your library.
-- **Index**: Index component following `InputHTMLAttributes<HTMLInputElement>` is optional, you can use your component checkbox of your library.
+- **Input**: Input component following `InputHTMLAttributes<HTMLInputElement>` is optional, you can use your component input of your library.
+- **Checkbox**: Checkbox component following `InputHTMLAttributes<HTMLInputElement>` is optional, you can use your component checkbox of your library.
 - **Select**: Select component following `SelectProps<T = string>` is optional, you can use your component select of your library.
   - **SelectProps**: is a type props for select.
     - **option**: is current value of select (type `Option<T = string> = { label: string; value: T }`).
