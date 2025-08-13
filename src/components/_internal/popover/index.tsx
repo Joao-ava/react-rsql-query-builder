@@ -4,7 +4,7 @@ import React, {
   forwardRef,
   type HTMLProps,
   isValidElement,
-  type ReactNode,
+  type PropsWithChildren,
   useContext,
   useState
 } from 'react'
@@ -43,15 +43,13 @@ type PopoverContextType = PopoverOptions & {
 }
 
 type AsChild = {
-  asChild?: ReactNode
+  asChild?: boolean
 }
 
-type WithChildren = {
-  children?: ReactNode
-}
+type PopoverButtonProps = ButtonProps & AsChild
 
 const PopoverContext = createContext({} as PopoverContextType)
-const PopoverProvider: React.FC<PopoverContextType & WithChildren> = ({
+const PopoverProvider: React.FC<PropsWithChildren<PopoverContextType>> = ({
   children,
   ...props
 }) => (
@@ -59,7 +57,7 @@ const PopoverProvider: React.FC<PopoverContextType & WithChildren> = ({
 )
 const usePopoverContext = (): PopoverContextType => useContext(PopoverContext)
 
-export const Popover: React.FC<PopoverOptions & WithChildren> = ({
+export const Popover: React.FC<PropsWithChildren<PopoverOptions>> = ({
   initialOpen,
   open: controlledOpen = null,
   onOpenChange: setControlledOpen = null,
@@ -108,38 +106,35 @@ export const Popover: React.FC<PopoverOptions & WithChildren> = ({
   )
 }
 
-type PopoverTriggerProps = WithChildren & {
-  asChild?: boolean
-}
-export const PopoverTrigger = forwardRef<
-  HTMLElement,
-  HTMLProps<HTMLElement> & PopoverTriggerProps
->(({ children, asChild = false, ...props }, propRef) => {
-  const context = usePopoverContext()
-  const { Button } = useFilterContext()
-  const ref = useMergeRefs([context.data.refs.setReference, propRef])
-  if (asChild && isValidElement(children)) {
-    return cloneElement(
-      children,
-      context.interactions.getReferenceProps({
-        ref,
-        ...props,
-        'data-state': context.open ? 'open' : 'closed'
-      } as HTMLProps<Element>)
+export const PopoverTrigger = forwardRef<HTMLButtonElement, PopoverButtonProps>(
+  ({ children, asChild, ...props }, propRef) => {
+    const context = usePopoverContext()
+    const { Button } = useFilterContext()
+    const ref = useMergeRefs([context.data.refs.setReference, propRef])
+
+    if (asChild && isValidElement(children)) {
+      return cloneElement(
+        children,
+        context.interactions.getReferenceProps({
+          ref,
+          ...props,
+          'data-state': context.open ? 'open' : 'closed'
+        } as HTMLProps<Element>)
+      )
+    }
+
+    return (
+      <Button
+        ref={ref}
+        type="button"
+        data-state={context.open ? 'open' : 'closed'}
+        {...context.interactions.getReferenceProps(props)}
+      >
+        {children}
+      </Button>
     )
   }
-
-  return (
-    <Button
-      ref={ref}
-      type="button"
-      data-state={context.open ? 'open' : 'closed'}
-      {...context.interactions.getReferenceProps(props)}
-    >
-      {children}
-    </Button>
-  )
-})
+)
 PopoverTrigger.displayName = 'PopoverTrigger'
 
 export const PopoverContent = forwardRef<
@@ -200,37 +195,36 @@ export const PopoverContent = forwardRef<
 })
 PopoverContent.displayName = 'PopoverContent'
 
-export const PopoverClose = forwardRef<
-  HTMLButtonElement,
-  HTMLProps<HTMLButtonElement> & ButtonProps & AsChild
->(({ asChild, ...props }, propRef) => {
-  const { Button } = useFilterContext()
-  const { onOpenChange } = usePopoverContext()
-  if (asChild && isValidElement(props.children)) {
-    return cloneElement(props.children, {
-      propRef,
-      ...props,
-      onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        props.onClick?.(event)
-        if (onOpenChange) {
-          onOpenChange(false)
+export const PopoverClose = forwardRef<HTMLButtonElement, PopoverButtonProps>(
+  ({ asChild, ...props }, propRef) => {
+    const { Button } = useFilterContext()
+    const { onOpenChange } = usePopoverContext()
+    if (asChild && isValidElement(props.children)) {
+      return cloneElement(props.children, {
+        propRef,
+        ...props,
+        onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+          props.onClick?.(event)
+          if (onOpenChange) {
+            onOpenChange(false)
+          }
         }
-      }
-    } as Partial<unknown> & React.Attributes)
-  }
+      } as Partial<unknown> & React.Attributes)
+    }
 
-  return (
-    <Button
-      ref={propRef}
-      {...props}
-      type="button"
-      onClick={(event) => {
-        props.onClick?.(event)
-        if (onOpenChange) {
-          onOpenChange(false)
-        }
-      }}
-    />
-  )
-})
+    return (
+      <Button
+        ref={propRef}
+        {...props}
+        type="button"
+        onClick={(event) => {
+          props.onClick?.(event)
+          if (onOpenChange) {
+            onOpenChange(false)
+          }
+        }}
+      />
+    )
+  }
+)
 PopoverClose.displayName = 'PopoverClose'
