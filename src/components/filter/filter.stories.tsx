@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, screen } from 'storybook/test'
 import type { ExpressionNode } from '@rsql/ast'
 
+import { WithLanguage } from '../../../.storybook/withLanguage'
+
 import Filter, { type FilterRootProps } from '.'
 
 const meta = {
@@ -10,7 +12,8 @@ const meta = {
   component: Filter,
   parameters: {
     layout: 'padded'
-  }
+  },
+  decorators: [WithLanguage]
 } as Meta<typeof Filter>
 export default meta
 

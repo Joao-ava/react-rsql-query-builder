@@ -19,8 +19,11 @@ import {
 } from 'react-icons/bi'
 import type { IconType } from 'react-icons'
 import { useTranslation } from 'react-i18next'
+import type { i18n as I18n } from 'i18next'
 
 import type { FieldType, FilterItem } from '../../types'
+
+import { LanguageProvider } from '../../providers'
 
 import {
   defaultOperators,
@@ -68,6 +71,8 @@ export const FilterRoot: React.FC<FilterRootProps> = ({
   search,
   setSearch,
   children,
+  i18n,
+  language,
   ...components
 }) => {
   const [field, setField] = useState<FilterItem>(INITIAL_FIELD)
@@ -179,7 +184,9 @@ export const FilterRoot: React.FC<FilterRootProps> = ({
       setEditionFilter={setEditionFilter}
       onEditFilter={handleEditFilter}
     >
-      {children}
+      <LanguageProvider i18n={i18n} language={language}>
+        {children}
+      </LanguageProvider>
     </FilterProvider>
   )
 }
@@ -389,6 +396,8 @@ AppliedFilterTrigger.displayName = 'Filters.AppliedFilterTrigger'
 export type FilterProps = Pick<FilterContextType, 'search' | 'fields'> &
   Partial<CustomComponentsType> & {
     setSearch: (search: ExpressionNode | undefined) => void
+    i18n?: I18n
+    language?: string
   }
 const Filter: React.FC<FilterProps> = (props) => (
   <FilterRoot {...props}>

@@ -3,8 +3,6 @@ import { INITIAL_VIEWPORTS } from 'storybook/viewport'
 
 import '../src/styles.css'
 
-import { WithI18n } from './withI18n'
-
 const preview: Preview = {
   globalTypes: {
     locale: {
@@ -35,7 +33,6 @@ const preview: Preview = {
       }
     }
   },
-  decorators: [WithI18n],
   tags: ['autodocs']
 }
 
