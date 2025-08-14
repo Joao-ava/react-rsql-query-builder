@@ -15,8 +15,6 @@ const LanguageProvider: React.FC<PropsWithChildren<LanguageProviderProps>> = ({
 }) => {
   const translation = useTranslation()
 
-  console.log(language)
-
   useLayoutEffect(() => {
     translation.i18n.changeLanguage(language)
   }, [language, translation.i18n])
