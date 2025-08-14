@@ -8,7 +8,7 @@ Basic sample.
 
 ```tsx
 import React from 'react'
-import 'react-rsql-query-builder/dist/style.css'
+import 'react-rsql-query-builder/styles.css'
 import ReactRsqlFilterBuilder, { Field } from 'react-rsql-query-builder'
 
 const Filter: React.FC = () => {
@@ -63,6 +63,66 @@ const Filter: React.FC = () => {
     - **items**: is a list of items to select display (type array of `Option`).
     - **setValue**: is a function to call when select an item of `items` (type `(value: T) => void`).
     - **className**: is a optional className to set css class to component (type `string`).
+
+## Composition Pattern
+
+The library also supports a composition pattern approach, which gives you more flexibility and control over the component structure. This is an alternative way to use the library, and you can choose either this approach or the basic usage shown above.
+
+```tsx
+import React from 'react'
+import 'react-rsql-query-builder/styles.css'
+import {
+  FilterRoot,
+  FilterTriggerContent,
+  FilterTrigger,
+  AppliedFiltersList,
+  type FilterProps
+} from 'react-rsql-query-builder'
+
+const Filter: React.FC<FilterProps> = (props) => (
+  <FilterRoot {...props}>
+    <section className="rsql-main" data-testid="filter-main-section">
+      <FilterTriggerContent>
+        <FilterTrigger />
+      </FilterTriggerContent>
+      <AppliedFiltersList />
+    </section>
+  </FilterRoot>
+)
+
+// Then use it like this:
+const MyComponent: React.FC = () => {
+  const [search, setSearch] = useState<ExpressionNode | undefined>(undefined)
+  const fields: Field[] = [
+    { selector: 'name', label: 'Name', type: 'string' },
+    { selector: 'age', label: 'Age', type: 'number' }
+    // ...other fields
+  ]
+
+  return (
+    <Filter
+      search={search}
+      setSearch={setSearch}
+      fields={fields}
+      language="en"
+    />
+  )
+}
+```
+
+**Composition Components:**
+
+- **FilterRoot**: The main container component that provides context to all child components.
+- **FilterTriggerContent**: Wraps the trigger button and manages the popover state.
+- **FilterTrigger**: The button that opens the filter selection popover.
+- **AppliedFiltersList**: Displays the list of currently applied filters.
+
+Using the composition pattern allows you to:
+
+- Customize the layout and structure of the filter components
+- Insert your own components between the filter components
+- Apply custom styling more precisely
+- Reuse parts of the filter UI in different contexts
 
 ## Translation
 
