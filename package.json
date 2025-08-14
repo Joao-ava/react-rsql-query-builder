@@ -13,7 +13,6 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.umd.js"
     },
-    "./style": "./dist/react-rsql-query-builder.css",
     "./styles.css": "./dist/react-rsql-query-builder.css"
   },
   "license": "MIT",
