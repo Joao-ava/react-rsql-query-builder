@@ -1,6 +1,6 @@
 import './styles.css'
-import { FiltersProvider } from './providers/FiltersProvider'
-export * from './components/Filter'
+import Filter from './components/filter'
+export * from './components/filter'
 export * from './utils'
 export * from './types'
-export default FiltersProvider
+export default Filter

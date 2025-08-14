@@ -1,5 +1,6 @@
 import { type ComparisonNode, getSelector, getValue } from '@rsql/ast'
-import type { FilterItem } from '../types.ts'
+
+import type { FilterItem } from '../types'
 
 const sameArray = (first: string[], second: string[]): boolean => {
   const firstSet = Array.from(new Set(first))
