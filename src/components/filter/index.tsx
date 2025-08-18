@@ -372,7 +372,7 @@ const AppliedFilterTrigger = forwardRef<
     if (filterItem.type === 'date') {
       return filterItem.value.split('-').reverse().join('/')
     }
-    if (filterItem.type === 'boolean') return t(value)
+    if (filterItem.type === 'boolean') return t(filterItem.value)
     return filterItem.value.replaceAll('*', '')
   }, [filterItem.options, filterItem.type, filterItem.value, t])
 
