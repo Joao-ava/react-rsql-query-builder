@@ -52,15 +52,19 @@
 .rsql-main {
   display: grid;
   grid-template:
-  'popover-trigger' min-content
-  'filters-list' min-content
-  / min-content;
+    'popover-trigger' min-content
+    'filters-list' min-content
+    / min-content;
   gap: 4px;
-}
 
-.rsql-popover-trigger {
-  grid-area: popover-trigger;
-  width: max-content;
+  .rsql-popover-trigger {
+    grid-area: popover-trigger;
+    width: max-content;
+  }
+
+  .rsql-filters {
+    grid-area: filters-list;
+  }
 }
 
 .rsql-filter-box {
@@ -155,7 +159,6 @@
 }
 
 .rsql-filters {
-  grid-area: filters-list;
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: min-content;
@@ -177,7 +180,7 @@
   transition: background-color 0.2s;
   user-select: none;
 
-  &[data-state=open] {
+  &[data-state='open'] {
     background-color: #ccc;
   }
 }
