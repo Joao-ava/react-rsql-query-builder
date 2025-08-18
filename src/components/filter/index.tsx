@@ -312,9 +312,7 @@ AppliedFiltersList.displayName = 'Filters.AppliedFiltersList'
 type AppliedFilterItemProps = {
   item: FilterItem
 }
-export const AppliedFilterItem: React.FC<AppliedFilterItemProps> = ({
-  item
-}) => {
+const AppliedFilterItem: React.FC<AppliedFilterItemProps> = ({ item }) => {
   const { originalFilter, onSelectFilter } = useFilterContext()
 
   const isOpen = useMemo(() => {
