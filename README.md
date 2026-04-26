@@ -2,6 +2,12 @@
 
 Component for create rsql filters.
 
+## Install
+
+```shell
+npm i react-rsql-query-builder
+```
+
 ## Usage
 
 Basic sample.
@@ -127,6 +133,10 @@ Using the composition pattern allows you to:
 ## Translation
 
 For default library have three languages english (en), portuguese (ptBr) and spanish (es), you can specify language do you want with prop `language` and you can customize or add language with prop `i18n` (Use [english translation as example](https://github.com/Joao-ava/react-rsql-query-builder/blob/main/src/i18n/locales/en.ts)).
+
+## Documentation
+
+For more detailed information about operators, field types and styling, please check our [Documentation Index](https://github.com/Joao-ava/react-rsql-query-builder/wiki).
 
 ## Commands
 
