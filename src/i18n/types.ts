@@ -1,4 +1,6 @@
-export type Locale = {
+import type { Resource } from 'i18next'
+
+export type AppTranslation = {
   add: string
   filters: string
   search: string
@@ -20,4 +22,8 @@ export type Locale = {
     contains: string
     notContains: string
   }
+}
+
+export interface NamespaceTranslations extends Resource {
+  translation: AppTranslation
 }

@@ -11,16 +11,15 @@ const preview: Preview = {
       toolbar: {
         icon: 'globe',
         items: [
-          { value: 'en', right: '🇺🇸', title: 'English' },
-          { value: 'ptBr', right: '🇧🇷', title: 'Português' },
-          { value: 'es', right: '🇪🇸', title: 'Español' }
-        ],
-        showName: true
+          { value: 'en-US', right: '🇺🇸', title: 'English' },
+          { value: 'pt-BR', right: '🇧🇷', title: 'Português' },
+          { value: 'es-ES', right: '🇪🇸', title: 'Español' }
+        ]
       }
     }
   },
   initialGlobals: {
-    locale: 'ptBr'
+    locale: 'pt-BR'
   },
   parameters: {
     viewport: {
